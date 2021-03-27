@@ -1,0 +1,120 @@
+\ifglsentryexists{sw}{}%
+{%
+\gls@defglossaryentry{sw}%
+{%
+name={SW},%
+sort={SW},%
+type={acronym},%
+first={Star Wars\glsspace (SW)},%
+firstplural={Star Wars\acrpluralsuffix \glsspace (SW\acrpluralsuffix )},%
+text={SW},%
+plural={SW\acrpluralsuffix },%
+description={Star Wars},%
+descriptionplural={Star Wars\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Star Wars},%
+longplural={Star Warss},%
+short={SW},%
+shortplural={SWs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{hw}{}%
+{%
+\gls@defglossaryentry{hw}%
+{%
+name={HW},%
+sort={HW},%
+type={acronym},%
+first={Halo Wars\glsspace (HW)},%
+firstplural={Halo Wars\acrpluralsuffix \glsspace (HW\acrpluralsuffix )},%
+text={HW},%
+plural={HW\acrpluralsuffix },%
+description={Halo Wars},%
+descriptionplural={Halo Wars\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Halo Wars},%
+longplural={Halo Warss},%
+short={HW},%
+shortplural={HWs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{cdma}{}%
+{%
+\gls@defglossaryentry{cdma}%
+{%
+name={CDMA},%
+sort={CDMA},%
+type={acronym},%
+first={Code Division Multiple Access\glsspace (CDMA)},%
+firstplural={Code Division Multiple Access\acrpluralsuffix \glsspace (CDMA\acrpluralsuffix )},%
+text={CDMA},%
+plural={CDMA\acrpluralsuffix },%
+description={Code Division Multiple Access},%
+descriptionplural={Code Division Multiple Access\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Code Division Multiple Access},%
+longplural={Code Division Multiple Accesss},%
+short={CDMA},%
+shortplural={CDMAs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{gsm}{}%
+{%
+\gls@defglossaryentry{gsm}%
+{%
+name={GSM},%
+sort={GSM},%
+type={acronym},%
+first={Global System for Mobile communication\glsspace (GSM)},%
+firstplural={Global System for Mobile communication\acrpluralsuffix \glsspace (GSM\acrpluralsuffix )},%
+text={GSM},%
+plural={GSM\acrpluralsuffix },%
+description={Global System for Mobile communication},%
+descriptionplural={Global System for Mobile communication\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Global System for Mobile communication},%
+longplural={Global System for Mobile communications},%
+short={GSM},%
+shortplural={GSMs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
