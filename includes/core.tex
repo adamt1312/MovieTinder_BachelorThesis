@@ -1,7 +1,41 @@
 \section{Teoretická časť}
 
 \subsection{Odporúčacie systémy}
- Vo všeobecnosti odporúčacie systémy sú algoritmy, ktorých hlavným cieľom, je odporučiť používateľovi jemu relevantné položky (filmy na pozretie, text na čítanie, produkty na kúpenie alebo čokoľvek iné v závislosti od odvetvia). Keď sa pozrieme na dôležitosť týchto systémov, v určitých odvetviach sú skutočne nevyhnutné, pretože môžu ,ak pracujú efektívne, pomáhať generovať firmám väčšie príjmy a navyše môžu predstavovať spôsob, ako vyniknúť oproti konkurencií a zlepšiť UX. Pri odporúčacích systémoch existujú dve hlavné techniky návrhu algoritmu a to tzv. collaborative filtering a content based filtering. Poďme sa teda pozrieť na rôzne koncepty týchto dvoch techník. \\
+ Odporúčacie systémy predstavujú súbor softvérových nástrojov a techník, ktoré poskytujú používateľovi odporúčania ohľadom daného súboru položiek. Odporúčania súvisia s rôznymi rozhodovacími procesmi ako napríklad akú položku kúpiť, akú hudbu počúvať alebo aké online noviny  čítať. \cite{rs1} Dalo by sa teda povedať, že ich hlavným cieľom je odporučiť danému používateľovi jemu relevantné položky. "Položka" je termín, ktorý označuje čo konkrétne daný odporúčací systém odporúča používateľom. Vzhľadom nato, že odporúčania sú väčšinou personalizované, rôzny používatelia dostávajú rozličné odporúčania. Existujú aj nepersonalizované odporúčania. Tie fungujú na jednoduchšom princípe a je ľahšie ich generovať. Typickým príkladom sú rebríčky, ktoré obsahujú výber top 10 najoblúbenjších produktov. Personalizované odporúčania v ich najjednouchšej forme sú zoradené zoznamy položiek.
+ 
+Keď sa pozrieme na dôležitosť týchto systémov, v určitých odvetviach zohrávajú dôležitú rolu. Väčšina veľkých internetových služieb ako Amazon, YouTube, Netflix, Google, Tripadvisor alebo IMDb majú vyvinuté svoje vlastné odporúčacie systémy, ktoré dlhodobo pomahajú zlepšovať ich výsledky, ale aj UX. Tak isto aj mnoho mediálnych firiem už dnes vyvíja odporúčacie systémy, ktoré potom nasadzujú a používajú ako časť služby, ktorú poskytujú svojim odoberateľom. Netflix v roku 2009 ocenil tím programátorov, ktorý ako prvý úspešne zefektívnil ich odporúčací systém o takmer 10\%, cenou 1 milíon dolárov. To len podčiarkuje ich významnosť a fakt, že svetové firmy do tejto technológie investujú nemalé finančné prostriedky.  \\
+
+\subsubsection{Základné funkcie}
+Existuje viacero dôvodov, prečo môžu poskytovatelia služieb chcieť túto technológiu využiť: 
+ \begin{itemize}[leftmargin=*]
+{\bf \item Zvýšenie predaja} - najdôležitejšia funkcia pre komerčný odporúčací systém, je samozrejme zvýšenie počtu predaných položiek. Čím efektívnejší je, tým lepšie výsledky firme generuje.
+
+{\bf \item Predávať rôznorodý tovar} - ďalšia významná funkcia je umožniť používatelovi vybrať si položky, ktoré by bez odporúčania ťažšie našiel.
+ 
+	{\bf \item Zvýšiť spokojnosť používateľa} - dobre fungujúci odporúčaci systém, vie zlepšiť aj celkový UX, čo v konečnom dôsledku zabezpečí, že používateľ bude odporúčania rád využívať.
+
+	{\bf \item Zvýšiť vernosť používateľa} - akonáhle používateľ zaregistruje, na základe presných odporúčaní, že ho služba "pozná", nadobudne pocit, že ho považuje za hodnotného zakazníka a bude sa rád vracať.
+	
+	{\bf \item Lepšie rozumieť tomu, čo zákazník chce} - pomocou zbierania rôznych používateľských preferencií a následného analyzovania, vedia firmy lepšie reagovať na trh, zmeny na ňom a prispôsobovať svoj sortiment.  \newline
+
+\end{itemize} 
+
+
+\subsubsection{Typy odporúčacích systémov}
+Vo všeobecnosti, existujú odporúčacie techniky, ktoré nevyžadujú veľké množstvo vedomostí tj. používajú veľmi jednocuhé základné dáta, ako napríklad používateľove hodnotenia položiek.
+
+ \begin{itemize}[leftmargin=*]
+{\bf \item Položky} - sú objekty ktoré sú odporúčané. Môžu byť charakterizované ich zložitosťou a ich hodnotou. Hodnota može byť kladná, ak je položka pre používateľa užitočná, alebo záporná, ak položka nie je vhodná a používateľ pri jej výbere urobil nesprávne rozhodnutie.
+{\bf \item Používatelia} - môžu mať veľmi rozdielne ciele a vlastnosti. S cieľom personalizovať odporúčania a interakciu s počítačom, odporúčacie systémy využívajú množstvo informácií o používateľoch. Tieto informácie možu byť štrukturované viacerými spôsobmi a výber ktoré informácie treba modelovať systémom záleží od zvolenej techniky. Napríklad pri collaborative filteringu sa modelujú používatelia.
+{\bf \item Transakcie} - všeobecne ich označujeme ako zaznamenanú interakciu medzi používateľom a odporúčacím systémom. Sú to dáta podobného typu ako logy, ktoré uchovávajú dôležité informácie vygenerované počas interakcie, ktoré sú užitočne pre odporúčací algoritmus.
+
+Najpopulárnejšou formou dát transakcií sú hodnotenia, ktoré systém zbiera. Tieto hodnotenia možu byť zbierané explicitne, alebo implicitne. Pri explicitnom hodnotení je používateľ vyzvaný, aby zdieľal svoj názor na danú položku. Hodnotenia môžu byť v rôznych formách ako napríklad numerické hodnotenie od do (1-5), slovné hodnotenia (veľmí súhlasím, súhlasím, neutrálny, nesúhlasím, veľmi neúhlasím) alebo jednoduché binárne hodnotenie (dobré/zlé).
+
+\end{itemize} 
+ 
+Na ilustráciu predikcie odporúčacieho systému, uvažujme jednoduchý, nepersonalizovaný odporúčací algoritmus, ktorý odporúča najobľúbenejšie piesne. Dôvodom pre použitie tohto prístupu je, že pri absencii presnejších informácií o preferenciách používateľa, populárna pieseň tj. položka, ktorá je obľubená mnohými používateľmi, bude pravdepodobne relevantná aj pre generického používateľa. Teda aspoň v porovnaní s náhodne vybratou piesňou. Preto sa predpokladá, že užitočnosť týchto populárnych piesní, bude pre tohto používateľa primerane vysoká.
+
+  Pri odporúčacích systémoch existujú dve hlavné techniky návrhu algoritmu a to tzv. collaborative filtering a content based filtering. Poďme sa teda pozrieť na rôzne koncepty týchto dvoch techník. \\
 
 \subsubsection{Collaborative filtering}
 Collaborative filtering je metóda vytvárania automatických predpovedí o záujmoch používateľa zbieraním preferencií od väčšieho počtu použivateľov. Základným predpokladom tejto metódy je, že ak používateľ A má rovnaký názor na produkt ako používateľ B, je vysoko pravdepodobné, že použivateľ A bude mať na iný produkt ten istý názor ako použivateľ B. Týmto postupom by systém vedel napríklad predpovedať, ktoré televízne šou ma daný používateľ rád, na základe jeho doterajších názorov (napr. vo forme likes/dislikes). Treba poznamenať, že tieto predpovede sú špecifické pre daného používateľa, ale vytvárajú sa na základe informácií zhromaždených od veľkého počtu iných používateľov. 
@@ -87,15 +121,15 @@ Vo všeobecnosti sa mobilné aplikácie delia na 3 základné kategórie. Natív
 \end{itemize}
 
 \subsubsection{Prečo sme si vybrali React Native?}
-Pri rozhodovaní o hlavnej technológií na vývoj nášej aplikácie, sme uvažovali nad dvoma možnosťami. Porovnávali sme Android Studio, ktorého programovacím jazykom je Java a vytvorili by sme teda čisto natívnu aplikáciu pre Android a cross platformový framework React Native, ktorý využíva JavaScript. Po zvážení náročnosti jednotlivých riešení, ich výhod a nevýhod, potenciálu do budúcnosti a subjektívnych sympatií, sme vybrali React Native. Detailnejšie sa mu budeme venovať \hyperref[sec:React Native]{v nasledujúcej kapitole.}
+Pri rozhodovaní o hlavnej technológií na vývoj nášej aplikácie, sme uvažovali nad dvoma možnosťami. Porovnávali sme Android Studio, ktorého programovacím jazykom je Java a vytvorili by sme teda čisto natívnu aplikáciu pre Android a cross platformový framework React Native, ktorý využíva JavaScript. Po zvážení náročnosti jednotlivých riešení, ich výhod a nevýhod, potenciálu do budúcnosti a subjektívnych sympatií, sme vybrali React Native. Detailnejšie sa mu budeme venovať \hyperref[sec:React Native]{v nasledujúcej kapitole.} \\
 
 
 \subsection{React Native}
 \label{sec:React Native}
 
-React Native je cross-platformový framework na vývoj mobilných aplikácií, ktorý je postavený na populárnom webovom frameworku React. Rovnako ako React, aj React Native je open-source projekt udržiavaný prevažne vývojármi Facebooku a Instagramu. Potom ako sa v roku 2012 Mark Zuckerberg vyjadril, že používanie veľkého množstva HTML5 v mobilnej aplikácií Facebooku považuje za chybu. Vzhľadom nato, že výsledkom bola nestabilita aplikácie a pomalé načítavanie dát, sa Facebook rozhodol, že ich prioritou bude zlepšiť UX ich mobilnej aplikácie. React na ktorom bol neskôr v roku 2015 postavený React Native, vytvoril Jordan Walke, softvétový inžinier Facebooku. Jeho prvý prototyp, ktorý bol inšpirovaný XHP (rozšírenie PHP ktoré umožňuje vytvárať upravené HTML elementy) sa nazýval FaxJS. Použitý bol prvýkrát v roku 2011 vo Facebookovom news feede a neskôr v roku 2012 na Instagrame. React Native bol ohlásený v roku 2015 na konferencii Facebooku a prvá verzia vyšla 26. marca toho roku. Od vtedy zaznamenal tento framework nárast popularity naprieč celým spektrom vývojárov mobilných aplikácií a je čoraz častejšie používaný. Sú pomocou neho vytvorené viaceré známe mobilné aplikácie ako Facebook, Instagram, Skype, Airbnb, Bloomberg, SoundCloud a mnohé iné.
+React Native je cross-platformový framework na vývoj mobilných aplikácií, ktorý je postavený na populárnom webovom frameworku React. Rovnako ako React, aj React Native je open-source projekt udržiavaný prevažne vývojármi Facebooku a Instagramu. Potom ako sa v roku 2012 Mark Zuckerberg vyjadril, že používanie veľkého množstva HTML5 v mobilnej aplikácií Facebooku považuje za chybu. Vzhľadom nato, že výsledkom bola nestabilita aplikácie a pomalé načítavanie dát, sa Facebook rozhodol, že ich prioritou bude zlepšiť UX ich mobilnej aplikácie. React na ktorom bol neskôr v roku 2015 postavený React Native, vytvoril Jordan Walke, softvétový inžinier Facebooku. Jeho prvý prototyp, ktorý bol inšpirovaný XHP (rozšírenie PHP ktoré umožňuje vytvárať upravené HTML elementy) sa nazýval FaxJS. Použitý bol prvýkrát v roku 2011 vo Facebookovom news feede a neskôr v roku 2012 na Instagrame. React Native bol ohlásený v roku 2015 na konferencii Facebooku a prvá verzia vyšla 26. marca toho roku. Od vtedy zaznamenal tento framework nárast popularity naprieč celým spektrom vývojárov mobilných aplikácií a je čoraz častejšie používaný. Sú pomocou neho vytvorené viaceré známe mobilné aplikácie ako Facebook, Instagram, Skype, Airbnb, Bloomberg, SoundCloud a mnohé iné. \\
 \subsubsection{Princíp fungovania}
-Pri vytváraní aplikácií pomocou React Native, je všetka logika, volania API a management stavov v JavaScripte. V porovnaní s inými hybridnými frameworkami, aplikácia vytvorená v React Native nebeží vo WebView, ale používa tzv. komponenty ktorých logika a štýlovanie je napísané priamo v kóde, ale vyrendrované sú konkrétne do natívnej podoby podľa platformy. Vďaka tomu je zaručené vysoké percento recyklovania kódu (cca. medzi 85 - 99 \%), pričom UI je prispôsobené konkrétnej platfrome. V prípade, ak je to potrebné, React Native umožňuje písať kód, logiku a štýlovanie špecificky pre konkrétnu platformu. 
+Pri vytváraní aplikácií pomocou React Native, je všetka logika, volania API a management stavov v JavaScripte. V porovnaní s inými hybridnými frameworkami, aplikácia vytvorená v React Native nebeží vo WebView, ale používa tzv. komponenty ktorých logika a štýlovanie je napísané priamo v kóde, ale vyrendrované sú konkrétne do natívnej podoby podľa platformy. Vďaka tomu je zaručené vysoké percento recyklovania kódu (cca. medzi 85 - 99 \%), pričom UI je prispôsobené konkrétnej platfrome. V prípade, ak je to potrebné, React Native umožňuje písať kód, logiku a štýlovanie špecificky pre konkrétnu platformu. \\
 \subsubsection{Bridge}
 React Native aplikácia je zložená z dvoch častí, JavaScript kódu a natívneho kódu. Z technologického hľadiska je zaujimavé, že natívny kód je napísaný diametrálne odlišnými jazykmi. Pri iOS sa napríklad používa Objective-C alebo Swift, pri Androide Java či Kotlin. Bridge je koncept, ktorý umožňuje a zabezpečuje komunikáciu medzi týmito dvoma časťami. Je jedným z najdôležitejších princípov, bez ktorého by si natívny kód a JavaScript kód nevedeli medzi sebou vymienať žiadne informácie. 
 %\begin{figure}
@@ -129,7 +163,7 @@ Tu prichádza na scénu Virtual DOM a dosahuje podstatne lepšie výkonostné v�
 \end{figure}
 Na obrázku \ref{domImg} vidíme červené kruhy, ktoré znázorňujú zmenené uzly. Tieto uzly reprezentujú konkrétne UI elementy, ktorých stav sa zmenil. Následne je vypočítaný rozdiel medzi aktuálnou a predchádzajúcou verziou virtual DOM stromu, pričom celý podstrom rodiča je nanovo prerendrovaný a tým poskytne aktualizáciu UI. Aktualizácie real DOM sa posielajú hromadne, namiesto odosielania aktualizácií pre každú jednu zmenu stavu.
 
-Spôsob akým virtual DOM využíva samotný React Native je vo veľkej miere podobný. Hlavnou odlišnosťou je, že sa namiesto webových komponentov rendrujú natívne komponenty, tým pádom sa nepoužívajú webové technológie.
+Spôsob akým virtual DOM využíva samotný React Native je vo veľkej miere podobný. Hlavnou odlišnosťou je, že sa namiesto webových komponentov rendrujú natívne komponenty, tým pádom sa nepoužívajú webové technológie. \\
 
 \subsubsection{Základné komponenty}
 Kľúčovým prvkom každej React Native aplikácie sú komponenty. Každý komponent má inú úlohu, no dokopy tvoria celok - samotnú aplikáciu. Z hľadiska koncepcie môžeme povedať, že komponenty sú podobné JavaScript funkciám. Vedia príjímať vstupy (nazývane ``props''), s ktorými potom umožňujú pracovať vo vnútri komponentu a vracajú elementy ktoré popisujú čo sa má zobraziť na obrazovke. V React Native existujú dva hlavné typy komponentov, ktoré tvoria aplikáciu. Sú štruktúrované rovnako, ako v bežnej webovej aplikácii vytvorenej pomocou Reactu.
@@ -169,7 +203,7 @@ export default Cat;
 
 \end{itemize}
 
-React Native navyše poskytuje aj sadu predpripravených hotových natívnych komponentov, ktoré sa dajú veľmi jednoducho použiť pri programovaní aplikácie. Patria medzi ne napríklad View, Text, Button, Image, či TextInput.
+React Native navyše poskytuje aj sadu predpripravených hotových natívnych komponentov, ktoré sa dajú veľmi jednoducho použiť pri programovaní aplikácie. Patria medzi ne napríklad View, Text, Button, Image, či TextInput. \\
 
 \subsubsection{Props a state}
 Props a State sú dva typy dát, pomocou ktorých vieme pracovať s komponentami.
@@ -177,10 +211,10 @@ Props a State sú dva typy dát, pomocou ktorých vieme pracovať s komponentami
 {\bf \item Props} \newline
 Props (z anglického slova ``properties'') je obdoba argumentov pri klasických funkciách v JavaScripte alebo atribútov pri HTML. Komponenty prijímajú props od rodičovského komponentu. Ich dôležitou vlastnosťou je, že sú tzv. ``immutable'' tj. nemenné vo vnútri komponentu. V Reacte a v React Native smerujú dáta jedným smerom - od rodičovských komponentov k detským. Celý koncept props je založený natom, že si viete vytvoriť jeden komponent, ktorý je možné použiť na viacerých miestach v aplikácii. Rodičovské komponenty potom vedia zavolať váš vytvorený komponent, pričom na rôznych miestach vie mať rozličné props. Props v zásade pomáhajú písať znovu použiteľný kód.
 {\bf \item State} \newline
-State pracuje odlišne v porovnaní s props. Je to interná vlastnosť komponentu, ktorá pomáha v rámci komponentu sledovať určité informácie. Použitím ``setState'' sa daný komponent aj jeho detské komponenty nanovo vyrendrujú, vďaka čomu sa nemusí programátor zaoberať implementáciou event handlerov ako v iných jazykoch. State sa používa v situáciách, keď sa menia dáta v rámci komponentu. Dobrým príkladom je napríklad interakcia používateľa s komponentom, pri klikntí na tlačidlo alebo zaškrtnutí checkboxu. Napríklad pri vypĺňaní formuláru má každý z textových inputov svoj vlastný state. Ak vyplníte daný input, automaticky sa mení jeho state, čo spôsobuje prerendrovanie celého komponentu a všetkých jeho detskych komponentov. 
-\end{itemize}
+State pracuje odlišne v porovnaní s props. Je to interná vlastnosť komponentu, ktorá pomáha v rámci komponentu sledovať určité informácie. Použitím ``setState'' sa daný komponent aj jeho detské komponenty nanovo vyrendrujú, vďaka čomu sa nemusí programátor zaoberať implementáciou event handlerov ako v iných jazykoch. State sa používa v situáciách, keď sa menia dáta v rámci komponentu. Dobrým príkladom je napríklad interakcia používateľa s komponentom, pri klikntí na tlačidlo alebo zaškrtnutí checkboxu. Napríklad pri vypĺňaní formuláru má každý z textových inputov svoj vlastný state. Ak vyplníte daný input, automaticky sa mení jeho state, čo spôsobuje prerendrovanie celého komponentu a všetkých jeho detskych komponentov. \\
+\end{itemize} 
 \subsubsection{Hooks}
-Hooks boli predstavené vo verzii 16.8.0 v roku 2019. Ich hlavnou úlohou je umožniť používať state a lifecycle metódy vo functional komponentoch, čo predtým bolo možné iba vytvorením class komponentov (v nich Hooks nie sú použiteľné). Ich uvedenie výrazne zvýhodnilo používanie functional komponentov oproti class komponentom. Tak isto ako pri komponentoch, aj tu React Native umožňuje využiť predpripravené Hooks priamo od vývojárov. Najčastejšie používané sú useEffect a useState. V prípade potreby je možné si vytvoriť aj vlastný hook tak, aby spĺňal požadovanú funkcionalitu.
+Hooks boli predstavené vo verzii 16.8.0 v roku 2019. Ich hlavnou úlohou je umožniť používať state a lifecycle metódy vo functional komponentoch, čo predtým bolo možné iba vytvorením class komponentov (v nich Hooks nie sú použiteľné). Ich uvedenie výrazne zvýhodnilo používanie functional komponentov oproti class komponentom. Tak isto ako pri komponentoch, aj tu React Native umožňuje využiť predpripravené Hooks priamo od vývojárov. Najčastejšie používané sú useEffect a useState. V prípade potreby je možné si vytvoriť aj vlastný hook tak, aby spĺňal požadovanú funkcionalitu. \\
 \subsection{Expo alebo React Native CLI ?}
 Predtým ako sa programátor pustí do vývoja aplikácie pomocou React Native, ho čaká rozhodnutie či použiť pomocný framework Expo, alebo vstavanú funkcionalitu React Native CLI. Nato aby sme mohli vytvorenú aplikáciu vôbec spustiť, potrebujeme jednu z týchto technológii. \\
 
@@ -220,29 +254,60 @@ Vstavaný nástroj v React Native, ktorý pomáha spustiť aplikáciu. \newline
 {\item Vývoj iOS aplikácie nie je možný na inom OS ako MacOS.} 
 {\item Na vytvorenie projektu sa vyžaduje Android Studio alebo XCode.}
 {\item Nastavenie projektu (vrátane konfigurácie) je pomerne komplikované a nepohodlné.} 
-{\item Neposkytuje niektoré JavaScript APIs napr. notifikácie, je potrebné ich ručne doinštalovať.}
+{\item Neposkytuje niektoré JavaScript APIs napr. notifikácie, je potrebné ich ručne doinštalovať.} \\
 \end{itemize}
 
 \subsubsection{Odôvodnenie výberu}
-V našom prípade sme si vybrali pracovať s Expom, keďže práca s ním je jednoduchšia a priamočiarejšia a vzhľadom na typ a vlastnosti aplikácie, nám jeho funkcionalita plne postačuje.
+V našom prípade sme si vybrali pracovať s Expom, keďže práca s ním je jednoduchšia a priamočiarejšia a vzhľadom na typ a vlastnosti aplikácie, nám jeho funkcionalita plne postačuje. \\
 
-\subsection{Movies API}
-a
+\subsection{Node.js}
+Node.js je open-source, cross-platformové, back-endové runtime prostredie JavaScriptu, ktoré beží na Chrome V8 JavaScript engine a vykonáva kód JavaScript mimo webového prehliadača. Tento engine prekladá JavaScriptový kód do rýchlejšieho strojového kódu. Strojový kód je nízkoúrovňový kód, ktorý počítač dokáže prečítať bez potreby ďalšej interpretácie. Vznik node.js bol logickým krokom po tom, ako vývojári JavaScriptu rozšírili použiteľnosť jazyka z čisto skriptovacieho, ktorý bolo možné používať a spúštať iba v prehliadači, na jazyk ktorý umožňuje vytvoriť samostatnú aplikáciu spustiteľnú aj mimo prehliadača. 
+
+Nesporným prínosom node.js je, že využíva tzv. event-driven non-blocking I/O model, ktorý ho robí efektívnym. I/O znamená input/output, čo môže byť čokoľvek od čítania resp. zapisovania lokálnych súborov, až po vytváranie HTTP requestov na API. Non - blocking znamená, že napríklad pri requeste na vytiahnutie údajov dvoch používateľov z databázy, daný request neblokuje vykonávanie ďalšieho kódu počas čakania na odpoveď. Na \hyperref[nodejsImg]{ obrázku \ref{nodejsImg}} nižšie možeme vidieť porovnanie blocking (vľavo) a non blocking modelu (vpravo) na spomenutom príklade s databázou. \\
+
+\begin{figure}[!htbp]
+  \centering  
+  \def\stackalignment{c}
+	\stackunder{\includegraphics[width=16cm]{img/nodejs.png}}%
+           {\scriptsize%
+            Zdroj: \url{https://www.freecodecamp.org/news/what-exactly-is-node-js-ae36e97449f5/}}
+	\caption{Porovnanie blocking a non-blocking modelu}  
+  \label{nodejsImg}
+\end{figure}
+
+\subsubsection{Yarn}
+Je package manager pre JavaScript, ktorý pomáha riadiť dodatočne doinštalované knižnice a rôzne iné dependencies v našom projekte. Keďže v súčasnej dobe sa pri programovaní využíva veľké množstvo knižníc a dependencies, aby sa zjednodušila práca programátora a nemusel istú funkcionalitu programovať nanovo, je odporúčané package manager používať. 
+
+Node.js prichádza s predinštalovaným package managerom npm. Napriek tomu sme sa rozhodli použiť yarn, ktorý bol vytvorený Facebookom, tak isto ako React Native a preto práca s ním bola konzistentnejšia a bez väčších problémov na rozdiel od npm. \\
+\subsubsection{Axios}
+Axios je knižnica pre JavaScript, ktorá sa používa na vytváranie HTTP requestov z node.js alebo XMLHttpRequests z prehliadača, ktorý podporuje aj ES6 promise API. \\
+
+
+\subsection{TMDb API}
+The Movie Database (TMDb), je databáza filmov a TV seriálov, ktorá bola vytvorená v roku 2008 úzkou komunitou ľudí, ktorá sa neskôr postupne rozrástla. Dnes je TMDb používaná vyše 400 000 developermi a firmami. Úspech im prinisela hlavne ich dostupná API, ktorá je zadarmo a ponúka širokú škálu queries pomocou ktorých je možné získať podrobné informácie o filmových tituloch. Ich veľkou prednosťou je aj množstvo dostupných titulných plagátov k filmom vo vysokej kvalite. \\
 
 \subsection{Firebase}
-Firebase je platforma vyvinutá spoločnosťou Google, ktorá pomáha vytvárať, zlepšovať a rozširovať funkcionalitu aplikácií. Obsahuje sadu nástrojov , ktoré pokrývajú veľkú časť služieb, ktoré by si vývojári museli inak sami naprogramovať. Patria sem napríklad analytika, autentifikácia používateľov, databázy, konfigurácia, ukladanie súborov, doručovanie push notifikácií a mnoho iného. Služby sú uložené v cloude a sú škálovateľné s malým resp. minimálnym úsilím zo strany vývojára.
+Firebase je platforma vyvinutá spoločnosťou Google, ktorá pomáha vytvárať, zlepšovať a rozširovať funkcionalitu aplikácií. Obsahuje sadu nástrojov , ktoré pokrývajú veľkú časť služieb, ktoré by si vývojári museli inak sami naprogramovať. Patria sem napríklad analytika, autentifikácia používateľov, databázy, konfigurácia, ukladanie súborov, doručovanie push notifikácií a mnoho iného. Služby sú uložené v cloude a sú škálovateľné s malým resp. minimálnym úsilím zo strany vývojára. \\
+
 \subsubsection{Firebase authentication}
-Poskytuje back-endové služby, jednoducho použiteľné SDK a predpripravené UI knižnice na autentifikáciu používateľov v aplikácii. Podporuje autentifikáciu pomocou hesla, telefónneho čísla, Googlu, Facebooku a Twitteru. Je úzko integrovaná s ostatnými službami Firebase a využíva  štandardy ako OAuth 2.0 a OpenID Connect, takže ju možno ľahko integrovať do vlastného backendu.
+Poskytuje backendové služby, jednoducho použiteľné SDK a predpripravené UI knižnice na autentifikáciu používateľov v aplikácii. Podporuje autentifikáciu pomocou hesla, telefónneho čísla, Googlu, Facebooku a Twitteru. Je úzko integrovaná s ostatnými službami Firebase a využíva  štandardy ako OAuth 2.0 a OpenID Connect, takže ju možno ľahko integrovať do vlastného backendu. Okrem autentifikácie umožňuje aj registráciu a správu zaregistrovaných používateľov. V našej aplikácií sme si zvolili použiť autentifikáciu pomocou hesla. \\
+
 \subsubsection{Cloud firestore}
-Cloud Firestore je škálovateľná NoSQL cloudová databáza, pre vývoj mobilných a webových aplikácii. Udržuje dáta synchronizované medzi klientskými aplikáciami prostredníctvom listenerov v reálnom čase. Ponúka bezproblémovú integráciu s ostatnými produktami Firebase a Google Cloud vrátane cloudových funkcií.
-\subsection{Node.js}
-Node.js je open-source, medziplatformové, back-endové runtime prostredie JavaScriptu, ktoré beží na Chrome V8 JavaScript engine a vykonáva kód JavaScript mimo webového prehliadača. Node.js umožňuje vývojárom používať JavaScript na písanie nástrojov príkazového riadku a na skriptovanie na strane servera - spúšťanie skriptov na strane servera na produkciu dynamického obsahu webovej stránky pred odoslaním stránky do webového prehliadača používateľa. Z toho vyplýva, že Node.js predstavuje paradigmu „JavaScript všade“ [6], ktorá zjednocuje vývoj webových aplikácií okolo jedného programovacieho jazyka, a nie rôznych jazykov pre skripty na strane servera a na strane klienta.
-\subsubsection{Yarn}
-Je package manager pre JavaScript, ktorý pomáha menežovať dodatočne doinštalované knižnice a rôzne iné dependencies v našom projekte. Keďže v dnešnej dobe každým rokom rapídne rastie počet týchto dependencies, je nevyhnutné package manager používať. Node.js prichádza s predinštalovaným package managerom npm. Napriek tomu sme sa rozhodli použiť yarn, ktorý bol vytvorený Facebookom, tak isto ako React Native a preto práca s ním bola konzistentnejšia a bez väčších problémov na rozdiel od npm. 
-\subsubsection{Axios}
-Axios je knižnica pre JavaScript, ktorá sa používa na vytváranie HTTP requestov z node.js alebo XMLHttpRequests z prehliadača, ktorý podporuje aj ES6 Promise API. 
+Cloud Firestore je škálovateľná NoSQL cloudová databáza, pre vývoj mobilných a webových aplikácii. Udržuje dáta synchronizované medzi klientskými aplikáciami prostredníctvom listenerov v reálnom čase. Ponúka bezproblémovú integráciu s ostatnými produktami Firebase a Google Cloud vrátane cloudových funkcií. 
 
+Vo firestore dátovom modeli \hyperref[firestore]{(viď. obrázok \ref{firestore})}, sa dáta ukladajú do tzv. dokumentov, ktoré obsahujú polia (fields) namapované na konkrétne hodnoty. Tieto dokumenty sú ukladané do kolekcií, ktoré slúžia ako kontainer pre viacero dokumentov. Dokumenty podporujú mnoho rôznych dátových typov, od jednoduchých ako sú napríklad reťazce alebo čísla, až po komplexnejšie ako mapy, polia alebo komplexné vnorené objekty. Vytvoriť komplexnú databázu umožňuje vytváranie subkolekcií v rámci dokumentu (tj. kolekcie osbahujú dokumenty, ktoré obsahujú kolekcie a tie obsahujú ďalšie dokumenty atď.). \cite{firestoredoc}
+  
+Friebase ponúka aj druhý typ databázy, Firebase Realtime Database, čo je tiež NoSQL cloudová databáza. Avšak, oproti firestore ponúka jednoduchší dátový model, v ktorom sa dáta ukladajú iba vo formáte JSON, čo je vhodné iba pri jednoduchšej dátovej struktúre a tiež nepodporuje používanie zložitejších queries. Firestore bol teda v našom prípade lepšou voľbou v oboch prípadoch. \\
 
+\begin{figure}[!htbp]
+  \centering  
+  \def\stackalignment{c}
+	\stackunder{\includegraphics[width=15cm]{img/firestore.png}}%
+           {\scriptsize%
+            Zdroj: \url{https://waelyasmina.com/firebase-cloud-firestore-tutorial-web/}}
+	\caption{Znázornenie dátového modelu Cloud Firestore}  
+  \label{firestore}
+\end{figure}
 
 
 

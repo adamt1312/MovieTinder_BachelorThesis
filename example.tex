@@ -1,4 +1,5 @@
 \documentclass[bp]{FEIstyle}
+\addbibresource{includes/bibliography.bib}
 \usepackage{enumitem}
 \usepackage{float}
 \usepackage{listings}
@@ -15,10 +16,8 @@
 \FEIregNr{FEI-xxxx-xxxx}
 \FEIsupervisor{Ing. Romana Jamrichová}
 
-\FEIglossaries{includes/glossary}
-\bibliography{includes/bibliography.bib}
-
-\iffalse \input{includes/glossary} \fi
+%\FEIglossaries{includes/glossary}
+%\iffalse \input{includes/glossary} \fi
 
 \begin{document}
 \frontmatter
@@ -34,7 +33,7 @@
 \FEIcontent
 \FEIlistOfFiguresAndTables
 %\FEIlistOfGlossaries
-%\FEIlistOfAlgorithms
+\FEIlistOfAlgorithms
 \FEIlistOfAbbreviations{includes/abbreviations}
 \FEIlistOfListings
 
@@ -47,7 +46,11 @@
 
 % bibliography should use UTF-8 accents (write as is ľščťžýáí...) NOT converted by BibDesk
 % http://tex.stackexchange.com/questions/57743/how-to-write-%C3%A4-and-other-umlauts-and-accented-letters-in-bibliography
-\FEIbibliography %includes/bibliography.bib
+\FEIbibliography
+
+
+
+
 
 \backmatter
 

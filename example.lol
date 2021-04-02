@@ -1,4 +1,4 @@
 \defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {1}Príklad class komponentu}{11}{lstlisting.21}%
+\contentsline {lstlisting}{\numberline {1}Príklad class komponentu}{13}{lstlisting.23}%
 \defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {2}Príklad function komponentu}{12}{lstlisting.34}%
+\contentsline {lstlisting}{\numberline {2}Príklad function komponentu}{14}{lstlisting.36}%
