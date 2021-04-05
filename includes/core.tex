@@ -1,9 +1,9 @@
 \section{Teoretická časť}
 
 \subsection{Odporúčacie systémy}
- Odporúčacie systémy predstavujú súbor softvérových nástrojov a techník, ktoré poskytujú používateľovi odporúčania ohľadom daného súboru položiek. Odporúčania súvisia s rôznymi rozhodovacími procesmi ako napríklad akú položku kúpiť, akú hudbu počúvať alebo aké online noviny  čítať. \cite{rs1} Dalo by sa teda povedať, že ich hlavným cieľom je odporučiť danému používateľovi jemu relevantné položky. "Položka" je termín, ktorý označuje čo konkrétne daný odporúčací systém odporúča používateľom. Vzhľadom nato, že odporúčania sú väčšinou personalizované, rôzny používatelia dostávajú rozličné odporúčania. Existujú aj nepersonalizované odporúčania. Tie fungujú na jednoduchšom princípe a je ľahšie ich generovať. Typickým príkladom sú rebríčky, ktoré obsahujú výber top 10 najoblúbenjších produktov. Personalizované odporúčania v ich najjednouchšej forme sú zoradené zoznamy položiek.
+ Odporúčacie systémy predstavujú súbor softvérových nástrojov a techník, ktoré poskytujú používateľovi odporúčania ohľadom daného súboru položiek. Odporúčania súvisia s rôznymi rozhodovacími procesmi, ako napríklad akú položku kúpiť, akú hudbu počúvať alebo aké online noviny  čítať. \cite{rs1} Dalo by sa teda povedať, že ich hlavným cieľom je odporučiť danému používateľovi jemu relevantné položky. "Položka" je termín, ktorý označuje čo konkrétne daný odporúčací systém odporúča používateľom. Vzhľadom nato, že odporúčania sú väčšinou personalizované, rôzny používatelia dostávajú rozličné odporúčania. Existujú aj nepersonalizované odporúčania. Tie fungujú na jednoduchšom princípe a je ľahšie ich generovať. Typickým príkladom sú rebríčky, ktoré obsahujú výber top 10 najoblúbenjších položiek. Personalizované odporúčania v ich najjednouchšej forme sú zoradené zoznamy položiek.
  
-Keď sa pozrieme na dôležitosť týchto systémov, v určitých odvetviach zohrávajú dôležitú rolu. Väčšina veľkých internetových služieb ako Amazon, YouTube, Netflix, Google, Tripadvisor alebo IMDb majú vyvinuté svoje vlastné odporúčacie systémy, ktoré dlhodobo pomahajú zlepšovať ich výsledky, ale aj UX. Tak isto aj mnoho mediálnych firiem už dnes vyvíja odporúčacie systémy, ktoré potom nasadzujú a používajú ako časť služby, ktorú poskytujú svojim odoberateľom. Netflix v roku 2009 ocenil tím programátorov, ktorý ako prvý úspešne zefektívnil ich odporúčací systém o takmer 10\%, cenou 1 milíon dolárov. To len podčiarkuje ich významnosť a fakt, že svetové firmy do tejto technológie investujú nemalé finančné prostriedky.  \\
+Keď sa pozrieme na dôležitosť týchto systémov, v určitých odvetviach zohrávajú dôležitú rolu. Väčšina veľkých internetových služieb ako Amazon, YouTube, Netflix, Google, Tripadvisor či IMDb, majú vyvinuté svoje vlastné odporúčacie systémy, ktoré dlhodobo pomahajú zlepšovať ich výsledky, ale aj UX. Tak isto aj mnoho mediálnych firiem už dnes vyvíja odporúčacie systémy, ktoré potom nasadzujú a používajú ako časť služby, ktorú poskytujú svojim odoberateľom. Netflix v roku 2009 ocenil tím programátorov, ktorý ako prvý úspešne zefektívnil ich odporúčací systém o takmer 10\%, cenou 1 milión dolárov. To len podčiarkuje ich významnosť a fakt, že svetové firmy do tejto technológie investujú nemalé finančné prostriedky.  \\
 
 \subsubsection{Základné funkcie}
 Existuje viacero dôvodov, prečo môžu poskytovatelia služieb chcieť túto technológiu využiť: 
@@ -16,31 +16,46 @@ Existuje viacero dôvodov, prečo môžu poskytovatelia služieb chcieť túto t
 
 	{\bf \item Zvýšiť vernosť používateľa} - akonáhle používateľ zaregistruje, na základe presných odporúčaní, že ho služba "pozná", nadobudne pocit, že ho považuje za hodnotného zakazníka a bude sa rád vracať.
 	
-	{\bf \item Lepšie rozumieť tomu, čo zákazník chce} - pomocou zbierania rôznych používateľských preferencií a následného analyzovania, vedia firmy lepšie reagovať na trh, zmeny na ňom a prispôsobovať svoj sortiment.  \newline
+	{\bf \item Lepšie rozumieť tomu, čo zákazník chce} - pomocou zbierania rôznych používateľských preferencií a následného analyzovania, vedia firmy lepšie reagovať na trh a zmeny na ňom a tým prispôsobovať svoj sortiment potrebám trhu.  \newline
 
 \end{itemize} 
 
+
+\subsubsection{Základné pojmy}
+Všeobecná klasifikácia dát použitých v odporúčacích systémoch rozlišuje 3 druhy objektov.
+ \begin{itemize}[leftmargin=*]
+{\bf \item Položky} - sú objekty ktoré sú odporúčané. Môžu byť charakterizované ich zložitosťou a ich hodnotou alebo užitočnosťou. Hodnota može byť kladná, ak je položka pre používateľa užitočná, alebo záporná, ak položka nie je vhodná a používateľ pri jej výbere urobil nesprávne rozhodnutie.
+{\bf \item Používatelia} - môžu mať veľmi rozdielne ciele a vlastnosti. S cieľom personalizovať odporúčania a interakciu s počítačom, odporúčacie systémy využívajú množstvo informácií o používateľoch. Tieto informácie možu byť štrukturované viacerými spôsobmi a výber, ktoré informácie treba modelovať systémom, záleží od zvolenej techniky. 
+{\bf \item Transakcie} - všeobecne ich označujeme ako zaznamenanú interakciu medzi používateľom a odporúčacím systémom. Sú to dáta podobného typu ako logy, ktoré uchovávajú dôležité informácie vygenerované počas interakcie, ktoré sú užitočne pre odporúčací algoritmus.
+\end{itemize} 
+
+
+Vo všeobecnosti, existujú odporúčacie techniky, ktoré nevyžadujú veľké množstvo vedomostí tj. používajú veľmi jednouché základné dáta, ako napríklad používateľove hodnotenia položiek. Najpopulárnejšou formou dát transakcií sú tak isto hodnotenia, ktoré systém zbiera. Tieto hodnotenia možu byť zbierané explicitne, alebo implicitne. Pri explicitnom hodnotení je používateľ vyzvaný, aby zdieľal svoj názor na danú položku. Hodnotenia môžu byť v rôznych formách, ako napríklad:
+ \begin{itemize}[leftmargin=*]
+{\item numerické hodnotenie na pevne stanovenej stupnici (napr. 1-5),}
+{\item slovné hodnotenia ako veľmí súhlasím, súhlasím, neutrálny, nesúhlasím, veľmi neúhlasím,}
+{\item jednoduché binárne hodnotenie (dobré/zlé)}
+\end{itemize} 
+
+ 
+Na ilustráciu predikcie odporúčacieho systému, uvažujme jednoduchý, nepersonalizovaný odporúčací algoritmus, ktorý odporúča najobľúbenejšie piesne. Dôvodom pre použitie tohto prístupu je, že pri absencií presnejších informácií o preferenciách používateľa, populárna pieseň tj. položka, ktorá je obľubená mnohými používateľmi, bude pravdepodobne relevantná aj pre generického používateľa. Teda aspoň v porovnaní s náhodne vybratou piesňou. Preto sa predpokladá, že užitočnosť týchto populárnych piesní, bude pre tohto používateľa primerane vysoká.
+
+Niektoré odporúčacie systémy nemusia nutne odhadovať užitočnosť položiek priamo pred ich odporúčaním, ale môžu namiesto toho použiť určitú formu heuristiky, aby vytvorili hypotézu, že položka je pre používateľa užitočná. Toto je typické napríklad pre systémy založené na znalostiach (knowledge-based systems). Tieto predikcie užitočnosti sú vypočítané špecifickými algoritmami a využívajú rozličné druhy vedomostí, ktoré systém má o používateľoch a položkách. Napríklad systém môže mať funkciu na výpočet užitočnosti, ktorá je boolovská tj. jednoducho iba určuje, či je položka pre používateľa užitočná, alebo nie. \\
 
 \subsubsection{Typy odporúčacích systémov}
-Vo všeobecnosti, existujú odporúčacie techniky, ktoré nevyžadujú veľké množstvo vedomostí tj. používajú veľmi jednocuhé základné dáta, ako napríklad používateľove hodnotenia položiek.
-
- \begin{itemize}[leftmargin=*]
-{\bf \item Položky} - sú objekty ktoré sú odporúčané. Môžu byť charakterizované ich zložitosťou a ich hodnotou. Hodnota može byť kladná, ak je položka pre používateľa užitočná, alebo záporná, ak položka nie je vhodná a používateľ pri jej výbere urobil nesprávne rozhodnutie.
-{\bf \item Používatelia} - môžu mať veľmi rozdielne ciele a vlastnosti. S cieľom personalizovať odporúčania a interakciu s počítačom, odporúčacie systémy využívajú množstvo informácií o používateľoch. Tieto informácie možu byť štrukturované viacerými spôsobmi a výber ktoré informácie treba modelovať systémom záleží od zvolenej techniky. Napríklad pri collaborative filteringu sa modelujú používatelia.
-{\bf \item Transakcie} - všeobecne ich označujeme ako zaznamenanú interakciu medzi používateľom a odporúčacím systémom. Sú to dáta podobného typu ako logy, ktoré uchovávajú dôležité informácie vygenerované počas interakcie, ktoré sú užitočne pre odporúčací algoritmus.
-
-Najpopulárnejšou formou dát transakcií sú hodnotenia, ktoré systém zbiera. Tieto hodnotenia možu byť zbierané explicitne, alebo implicitne. Pri explicitnom hodnotení je používateľ vyzvaný, aby zdieľal svoj názor na danú položku. Hodnotenia môžu byť v rôznych formách ako napríklad numerické hodnotenie od do (1-5), slovné hodnotenia (veľmí súhlasím, súhlasím, neutrálny, nesúhlasím, veľmi neúhlasím) alebo jednoduché binárne hodnotenie (dobré/zlé).
-
+\begin{itemize}[leftmargin=*]
+{\bf \item Demografické - }Tento typ systémov odporúča položky na základe demografického profilu používateľa. Sú pri nich generované rôzne odporúčania, pre rôzne demografické oblasti. Mnoho webových stránok používa na vytvorenie personalizácie jednoduché odporúčania pomocou demografikých údajov. Napríklad používatelia sú presmerovaný na konkrétne webové stránky na základe ich jazyka alebo krajiny. Prípadne sa z údajov často využíva aj vek používateľa.
+{\bf \item Knowledge-based - }Systémy založené na znalostiach, odporúčajú položky na základe konkrétnych znalostí o tom, ako určité vlastnosti položiek zodpovedajú potrebám a preferenciám používateľov a v konečnom dôsledku o tom, ako je položka pre používateľa užitočná.
+{\bf \item Komunitné - }Odporúča položky na základe preferencií užšej komunity používateľov označovanej ako priatelia daného používateľa. Táto technika sleduje epigram „Povedzte mi, kto sú vaši priatelia a ja vám poviem, kto ste“. Prieskumy naznačujú, že ľudia sa skôr spoliehajú na odporúčania svojich priateľov, ako na odporúčania
+od podobných, ale anonymných osôb. Toto pozorovanie v kombinácii s popularitou sociálnych sietí vytvára rastúci záujem o komunitné systémy označované aj ako sociálne odporúčacie systémy. \\
 \end{itemize} 
  
-Na ilustráciu predikcie odporúčacieho systému, uvažujme jednoduchý, nepersonalizovaný odporúčací algoritmus, ktorý odporúča najobľúbenejšie piesne. Dôvodom pre použitie tohto prístupu je, že pri absencii presnejších informácií o preferenciách používateľa, populárna pieseň tj. položka, ktorá je obľubená mnohými používateľmi, bude pravdepodobne relevantná aj pre generického používateľa. Teda aspoň v porovnaní s náhodne vybratou piesňou. Preto sa predpokladá, že užitočnosť týchto populárnych piesní, bude pre tohto používateľa primerane vysoká.
-
-  Pri odporúčacích systémoch existujú dve hlavné techniky návrhu algoritmu a to tzv. collaborative filtering a content based filtering. Poďme sa teda pozrieť na rôzne koncepty týchto dvoch techník. \\
+\subsubsection{Typy odporúčacích techník}
+Pri odporúčacích systémoch existujú dve hlavné techniky návrhu algoritmu a to tzv. collaborative filtering a content based filtering. \\
 
 \subsubsection{Collaborative filtering}
-Collaborative filtering je metóda vytvárania automatických predpovedí o záujmoch používateľa zbieraním preferencií od väčšieho počtu použivateľov. Základným predpokladom tejto metódy je, že ak používateľ A má rovnaký názor na produkt ako používateľ B, je vysoko pravdepodobné, že použivateľ A bude mať na iný produkt ten istý názor ako použivateľ B. Týmto postupom by systém vedel napríklad predpovedať, ktoré televízne šou ma daný používateľ rád, na základe jeho doterajších názorov (napr. vo forme likes/dislikes). Treba poznamenať, že tieto predpovede sú špecifické pre daného používateľa, ale vytvárajú sa na základe informácií zhromaždených od veľkého počtu iných používateľov. 
+Collaborative filtering je technika, ktorá vytvára odporúčania na základe zbierania preferencií od väčšieho počtu používateľov. Najjednouchšia a pôvodná implementácia tohto prístupu, odporúča používateľovi položky, ktoré v minulosti pozitívne ohodnotili používatelia s podobnými preferenciami \hyperref[collaborativeFiltering]{(pozri obr. \ref{collaborativeFiltering})}. Teda ak máme používateľa  \textit{u}, tak jeho hodnotenie položky \textit{i} je pravdepodobne podobné, ako hodnotenie tej istej položky \textit{i} iným používateľom \textit{v}, pokiaľ \textit{u} a \textit{v} hodotili iné položky podobne. Treba poznamenať, že tieto predpovede sú teda špecifické pre daného používateľa, ale vytvárajú sa na základe informácií zhromaždených od veľkého počtu iných používateľov. Collaborative filtering je považovaný za najpopulárnejšiu techniku používanú v odporúčacích systémoch. \\\\\\
 
-Hlavnou výhodou tejto metódy je, že sa časom s pribudajúcim počtom interakcií zlepšuje a stáva sa efektívnejšou. Avšak, vzhľadom nato, že berie do úvahy iba interakcie z minulosti, jej hlavným problémom je tzv. "cold start problem": znamená, že je takmer nemožné niečo odporučiť novému používateľovi, alebo odporúčať nový produkt používateľom, pokiaľ či už používateľ alebo produkt nemájú žiadne interakcie. Navyše mnoho používateľov a produktov má príliš málo interakcií nato, aby algoritmus s nimi vedel na začiatku efektívne pracovať. Riešenia tohto problému bývajú, že novým používateľom sa odporúčaju náhodné produkty a nové produkty sa odporúčajú náhodným používateľom (tzv. "random strategy"), odporúčanie populárnych produktov novým používateľom a odporúčanie nových produktov najviac aktivným používateľom (tzv. "maximum expectation strategy"). Tak isto sa často používa, že v skorej fáze "života" používateľa alebo produktu sa použije iná metóda ako collaborative filtering. \\\\
 
 \begin{figure}[!htbp]
   \centering  
@@ -53,21 +68,34 @@ Hlavnou výhodou tejto metódy je, že sa časom s pribudajúcim počtom interak
   \label{collaborativeFiltering}
 \end{figure}
 
-Existujú dva prístupy k tejto metóde.
-
+Existujú dva prístupy pri používaní tejto techniky:
 \begin{enumerate}
-	{\bf \item Memory-based methods} niekedy označované aj ako neighbourhood-based collaborative filtering algoritmy, v ktorých hodnotenia produktov používateľom sú predpovedané na základe jeho susedov. Týchto susedov môžeme ďalej definovať dvoma spôsobmi:
+	{\bf \item Memory-based metódy} niekedy označované aj ako neighbourhood-based collaborative filtering metódy, sú metódy v ktorých hodnotenia položiek používateľom, sú predpovedané na základe jeho susedov. Týchto susedov môžeme ďalej definovať dvoma spôsobmi:
 \begin{itemize}[leftmargin=*]
-	{\bf \item User-based collaborative filtering:}\newline
-Nájsť iných podobných používateľov a odporúčať produkty ktoré sa páčia im.
-	{\bf \item Item-based collaborative filtering:}\newline
-Odporúčať produkty ktoré používatelia označili, že sa im páčia, pričom niektoré iné produkty máte spoločne označené.
+	{\bf \item User-based}\newline	
+Predpovedá hodnotenie používateľa \textit{u} položky \textit{i}, použitím hodnotení \textit{i} od iných používateľov, ktorí sú čo najviac podobní \textit{u}. Inak povedané snaží sa nájsť iných podobných používateľov (susedov) a odporúčať používateľovi \textit{u} produkty ktoré sa páčia im.
+	{\bf \item Item-based} \newline
+Zatiaľ čo pri user-based metóde sa pri predpovedaní hodnotenia spoliehajú na názor rovnako zmýšľajúcich používateľov, item-based prístupy sa zameriavajú na hodnotenie udelené podobným položkám. Túto myšlienku môžeme sformalizovať nasledovne. Predpoveď hodnotenia používateľa \textit{u} položky \textit{i} môžeme získať ako vážený priemer hodnotení \textit{u} iných položiek, ktoré sú čo najviac podobné \textit{i}.
 \end{itemize}
-	{\bf \item Model-based methods} využívajú metódy strojového učenia na tvorbu predpovedí, pričom tento problém považujú ako normálny problém strojového učenia. Využívajú sa techniky ako PCA, SVD, faktorizácia matíc, clusterin či neurónové siete.
+	{\bf \item Model-based methods} využívajú metódy strojového učenia na tvorbu predpovedí, pričom tento problém považujú ako normálny problém strojového učenia. Využívajú sa techniky ako PCA, SVD, faktorizácia matíc, clusterin či neurónové siete. \\
 \end{enumerate}
+
+
+Collaborative filtering, hlavne typ neighbourhood-based, prináša jeho používaním zaujimavé výhody. Spomeňme pár z nich:
+\begin{itemize}[leftmargin=*]
+	{\bf \item Jednoduchosť} - Neighborhood-based metódy sú intuitívne a ich implementácia je realtívne jednoduchá. V ich najjednoduchšej podobe vyžaduje vyladenie iba jeden parameter (počet susedov použitých v predikcii).
+	{\bf \item Účinnosť} - Jednou zo silných stránok, je ich efektívnosť. Na rozdiel od väčšiny model-based systémov nevyžadujú nákladné tréningové fázy, ktoré je potrebné vo veľkých komerčných aplikáciách vykonávať v častých intervaloch. Zatiaľ čo fáza odporúčaní je zvyčajne nákladnejšia ako pre model-based techniky, najbližších susedov je možné vopred vypočítať offline, čo poskytuje takmer okamžité odporúčania. Ukladanie najbližších susedov navyše vyžaduje veľmi málo pamäte, čo robí tento prístup škálovateľným na aplikácie s miliónmi používateľov.
+	{\bf \item Zdôvodnenie odporúčaní} - Takéto metódy tiež poskytujú stručné a intuitívne odôvodnenie vypočítaných predikcií. Napríklad v item-based odporúčaní, zoznam susedových položiek, ako aj hodnotenie, ktoré používateľ týmto položkám dal, sa môžu používateľovi zobraziť ako odôvodnenie odporúčania. To môže pomôcť používateľovi lepšie pochopiť odporúčanie resp. jeho relevantnosť a môže slúžiť ako základ pre interaktívny systém, kde si môžu používatelia vybrať susedov, ktorým by sa mala venovať väčšia dôležitosť.
+\end{itemize}
+
+
+Hlavnou nevýhodou týchto systémov je tzv. "cold start problem", čo znamená, že je takmer nemožné niečo odporučiť novému používateľovi, alebo odporúčať novú položku používateľom, pokiaľ či už používateľ alebo položka nemájú žiadne interakcie. Navyše mnoho používateľov a položiek má príliš málo interakcií nato, aby algoritmus s nimi vedel na začiatku efektívne pracovať. Riešenia tohto problému bývajú, že novým používateľom sa odporúčaju náhodné položky a nové položky sa odporúčajú náhodným používateľom (tzv. "random strategy"). Často sa používa aj odporúčanie populárnych položiek novým používateľom a odporúčanie nových položiek najviac aktívnym používateľom (tzv. "maximum expectation strategy"). V skorej fáze "života" používateľa alebo položky, sa môže použiť iná metóda ako collaborative filtering. \\
+	
  
 \subsubsection{Content based filtering}
-Táto metóda zahŕňa odporúčanie produktov na základe ich samotných vlastností. Odporúčania sú tu vytvárané na základe predchádzajúcich interakcií jednotlivého používateľa s produktami. Systém pracujúci touto metódou, sa snaží hladať podobnosti medzi produktami, s ktorými mal používateľ v minulosti pozitívnu interakciu (t.j. kúpil si daný produkt, ohodnotil kladne daný film, pridal skladbu do obľúbených atď.). Napríklad ak si používateľ v internetovom obchode s knihami kúpi knihu ktorá patrí do kategórie ‘literatúra’, je logické mu odporučiť knihy v tej istej alebo podobnej kategórii. Tak isto odporučiť mu knihy z toho istého roku vydania, alebo od toho istého autora. Výhodou content-based filteringu je, že nepotrebujeme veľa interakcií z minulosti nato, aby navrhoval relevantné produkty. Oproti tomu nevýhodou je, že sa systém časom neučí z interakcií a tým pádom sa ani časom nezlepšuje, keďže sa striktne drží informácií ktoré má o danom používateľovi. Ľudia sú však nepredvídateľní a ich vkus sa časom mení, preto v tomto ohľade má collaborative filtering navrch.
+Táto technika zahŕňa odporúčanie položiek na základe ich samotných vlastností. Odporúčania sú tu vytvárané na základe predchádzajúcich interakcií jednotlivých používateľov s položkami. Systém pracujúci touto metódou, sa snaží hladať podobnosti medzi položkami, s ktorými mal používateľ v minulosti pozitívnu interakciu (t.j. kúpil si daný produkt, ohodnotil kladne daný film, pridal skladbu do obľúbených atď.). Napríklad ak používateľ pozitívne ohodnotí film zo žánru komédia, systém z toho môže vyčítať, že do jeho preferencií patrí aj tento žáner a teda mu odporúčať komediálne filmy. Princíp fungovania je znázornený aj na \hyperref[contentFiltering]{obrázku \ref{contentFiltering}}.
+
+Nato aby táto technika správne fungovala, si systém musí vytvoriť pri danom používateľovi akýsi model, resp. profil, ktorý reprezentuje používateľove preferencie, ktoré získa na základe vlastností pozitívne hodnotených položiek. Proces tvorby odporúčania potom pozostáva z hľadania zhody medzi atribútmi profilu a atribútmi prehladávaných položiek. Položky, ktoré su odporúčané používateľovi, sú teda reprezentované, ako súbor vlastností tiež nazývaných aj atribúty. Napríklad pri odporúčaní filmov, vlastnosti, ktoré opisujú film sú herci,režiséry,žánre,hodnotenie filmu atď.\\\\
 \begin{figure}[!htbp]
   \centering  
   \def\stackalignment{c}
@@ -77,12 +105,38 @@ Táto metóda zahŕňa odporúčanie produktov na základe ich samotných vlastn
   \caption{Content based filtering}
   
   \label{contentFiltering}
-\end{figure}	
+\end{figure}
+
+Na získavanie feedbacku od používateľa sa používajú dve spôsoby: 
+\begin{itemize}[leftmargin=*]
+	{\bf \item like/dislike} - položky sú jednoducho klasifikované, buď ako relevantné, alebo irelevantné (binárne hodnotenie)  
+	{\bf \item rating} - používa sa diskrétna numerická stupnica (numerické hodnotenie) \\
+\end{itemize}
+
+{\bf \large Výhody content based filteringu} \newline
+	Implementácia content based odporúčaní má niekoľko výhod oproti ostatným technikám. 
+
+\begin{itemize}[leftmargin=*]
+	{\bf \item Nezávislosť od používateľov} - Tá je dosiahnutá vďaka tomu, že profil používateľa, na základe ktorého sa hladajú zhody s položkami, je vytvorený len z hodnotení položiek daným používateľom. Naproti tomu, napríklad technika collaborative filtering potrebuje hodnotenia aj od iných používateľov, čo môže byť problém pri aplikáciách, kde nieje dostatočne veľký počet používateľov.
+	{\bf \item Transparentnosť} - Zistiť ako systém funguje, je možné pomocou atribútov, ktoré model zohladňuje pri vytváraní profilu. To vie pomocť pri porozumení, prečo sa konkrétna položka objavila v zozname odporúčaných. Collaborative filtering systémy sa podstatne ťahšie analyzujú, keďže jediné vysvetlenie prečo je položka odporúčaná je, že neznámy používateľ, s podobnými preferenciami, pozitívne hodnotil danú položku.
+	{\bf \item Nová položka} - V content based metóde je možné odporúčať aj novú položku, ktorá nebola ešte hodnotená žiadnym používateľom. Vďaka tomu netrpí tzv. "frist-rater" problémom, ktorý postihuje collaborative filtering. Ten sa pri tvorbe odporúčaní spolieha na použivateľské preferencie. To spôsobuje, že pokial nová položka nebude hodnotená dostatočným počtom používateľov, systém nebude schopný ju odporúčať. \\
+\end{itemize}
+
+
+{\bf \large Nevýhody content based filteringu} \newline
+	Napriek spomenutým výhodám, použitie tejto techniky prináša aj isté obmedzenia. 
+
+\begin{itemize}[leftmargin=*]
+	{\bf \item Nový použivateľ} - Nato aby systém dokázal naozaj dobre porozumieť používateľovým preferenciám a vytváral presné odporúčania, je nevyhnutné mať zozbieraných dostatok hodnotení. Preto pri nových používateľoch, ktorí majú zo začiatku málo hodnotení, systém väčšinou neprináša spolahlivé odporúčania. 
+	{\bf \item Over-specialization} - Známy problém, kedy systém odporúča položky, ktoré sú počas procesu zhody s používateľovým profilom označené ako úžitočné. Tie však často bývajú podobné, ako položky, ktoré už hodnotil. Tento problém je často označovaný aj ako "serendipity problem", čím sa zdôrazňuje tendencia systému produkovať odporúčania, ktoré sa často podobajú a neobmieňajú. Napríklad ak používateľ pozitívne hodnotil filmy od režiséra Stanleyho Kubricka, v odporúčaniach mu môžu prevažovať filmy tohto typu. \\
+	
+\end{itemize}
+
 
 \subsection{Mobilné aplikácie}
 Mobilná aplikácia je softvérová aplikácia vytvorená špecificky pre mobilné zariadenia ako napríklad smartfóny, tablety alebo inteligentné hodinky. Pôvodne boli aplikácie vytvárané výrobcami mobilných operačných systémov, ktorí potrebovali pre používateľov zjednodušiť používanie základných funkcií smartfónu, ako napríklad prezeranie emailov, správ o počasí, prácu s kalendárom, fotenie fotografií atď. Avšak, vďaka rýchlemu vývinu samotných smartfónov a ich operačných systémov, začal rásť dopyt aj po aplikáciách zameraných na iné oblasti. V dnešnej dobe sú najpopulárnejšie rôzne herné aplikácie, navigačné aplikácie, aplikácie na online komunikáciu, hudobné aplikácie a mnohé iné. V posledných rokoch si používanie smartfónu bez spomenutých aplikácií ani nevieme predstaviť a stali sa ich neoddeliteľnou súčasťou. Aplikácie sa väčšinou sťahujú z distribučných platforiem, ktoré sú prevádzkované vlastníkom daného operačného systému, na ktorý je aplikácia určená. Spomeniem dva najväčšie a to App Store patriaci pod operačný systém iOS a Google Play Store patriaci pod Android. Na oboch platformách vieme nájsť veľké množstvo aplikácií všemožného zamerania, pričom každým dňom pribúdajú ďalšie. Niektoré sú bezplatné, iné spoplatnené tvorcom, pričom zárobok z nej sa delí medzi tvorcu aplikácie a distribučnú platformu. \\
 \subsubsection{Typy mobilných aplikácií}
-Vo všeobecnosti sa mobilné aplikácie delia na 3 základné kategórie. Natívne aplikácie, webové aplikácie a hybridné aplikácie. Dnes však už pri niektorých frameworkoch je ťažke určiť, do ktorej kategórie presne patria, keďže kombinujú vlastnosti viacerých z nich. 
+Vo všeobecnosti sa mobilné aplikácie delia na 3 základné kategórie. Natívne aplikácie, webové aplikácie a hybridné aplikácie. Dnes však už je pri niektorých frameworkoch ťažké určiť, do ktorej kategórie presne patria, keďže kombinujú vlastnosti viacerých z nich, preto sme spomenuli aj tzv. cross-platform aplikácie.
 \begin{itemize}[leftmargin=*]
 {\bf \item Natívne aplikácie} - sú vytvorené výlučne pre špecifický mobilný operačný systém tj. napríklad natívne Android aplikácie alebo natívne iOS aplikácie. Kvôli špecifickému zameraniu na jeden operačný systém nie je možné aplikácie kombinovať na rôznych platformách. Napríklad Blackberry aplikácia nie je spustiteľná na Androide, Windows Phone aplikáciu zase nespustíme na iOS. Teda všeobecne povedané, mobilnú aplikáciu nainštalujete a spustíte len na operačnom systéme, pre ktorý je vytvorená. Inštalujú sa priamo do mobilného zariadenia, potrebné dáta sú väčšinou uložené priamo v internom úložišku zariadenia. \\
 
@@ -115,9 +169,9 @@ Vo všeobecnosti sa mobilné aplikácie delia na 3 základné kategórie. Natív
 
 {\bf Používané technológie:} Využívajú sa hlavne frameworky ako Xamarin, React Native a Flutter.  \\
 
-{\bf Výhody:} Veľmi podobné hybridným aplikáciám. Jeden zdrojový kód kompilovateľný do viacerých OS, natívny UI a prijateľná cena vývoja. Oproti hybriným aplikáciám sú na tom lepšie čo sa týka výkonu, keďže nebežia vo WebView objekte.  \\
+{\bf Výhody:} Veľmi podobné hybridným aplikáciám. Jeden zdrojový kód kompilovateľný do viacerých OS, natívny UI a prijateľná cena vývoja. Oproti hybridným aplikáciám sú na tom lepšie čo sa týka výkonu, keďže nebežia vo WebView objekte.  \\
  
-{\bf Nevýhody:} Vývojári sú pri vývoji značne obmedzený ponukou komponentov ktoré daný framework poskytuje. Z hľadiska výkonu,  sú na tom čisto natívne aplikácie stále o niečo lepšie. Pri jednoduchých aplikáciách to však nie je badateľné.  \\
+{\bf Nevýhody:} Vývojári sú pri vývoji značne obmedzený ponukou komponentov, ktoré daný framework poskytuje. Z hľadiska výkonu,  sú na tom čisto natívne aplikácie stále o niečo lepšie. Pri jednoduchých aplikáciách to však nie je badateľné.  \\
 \end{itemize}
 
 \subsubsection{Prečo sme si vybrali React Native?}
@@ -161,7 +215,7 @@ Tu prichádza na scénu Virtual DOM a dosahuje podstatne lepšie výkonostné v�
 	\caption{Virtual DOM vs. real DOM}  
   \label{domImg}
 \end{figure}
-Na obrázku \ref{domImg} vidíme červené kruhy, ktoré znázorňujú zmenené uzly. Tieto uzly reprezentujú konkrétne UI elementy, ktorých stav sa zmenil. Následne je vypočítaný rozdiel medzi aktuálnou a predchádzajúcou verziou virtual DOM stromu, pričom celý podstrom rodiča je nanovo prerendrovaný a tým poskytne aktualizáciu UI. Aktualizácie real DOM sa posielajú hromadne, namiesto odosielania aktualizácií pre každú jednu zmenu stavu.
+Na \hyperref[domImg]{obrázku \ref{domImg}} vidíme červené kruhy, ktoré znázorňujú zmenené uzly. Tieto uzly reprezentujú konkrétne UI elementy, ktorých stav sa zmenil. Následne je vypočítaný rozdiel medzi aktuálnou a predchádzajúcou verziou virtual DOM stromu, pričom celý podstrom rodiča je nanovo prerendrovaný a tým poskytne aktualizáciu UI. Aktualizácie real DOM sa posielajú hromadne, namiesto odosielania aktualizácií pre každú jednu zmenu stavu.
 
 Spôsob akým virtual DOM využíva samotný React Native je vo veľkej miere podobný. Hlavnou odlišnosťou je, že sa namiesto webových komponentov rendrujú natívne komponenty, tým pádom sa nepoužívajú webové technológie. \\
 
@@ -169,7 +223,7 @@ Spôsob akým virtual DOM využíva samotný React Native je vo veľkej miere po
 Kľúčovým prvkom každej React Native aplikácie sú komponenty. Každý komponent má inú úlohu, no dokopy tvoria celok - samotnú aplikáciu. Z hľadiska koncepcie môžeme povedať, že komponenty sú podobné JavaScript funkciám. Vedia príjímať vstupy (nazývane ``props''), s ktorými potom umožňujú pracovať vo vnútri komponentu a vracajú elementy ktoré popisujú čo sa má zobraziť na obrazovke. V React Native existujú dva hlavné typy komponentov, ktoré tvoria aplikáciu. Sú štruktúrované rovnako, ako v bežnej webovej aplikácii vytvorenej pomocou Reactu.
 \begin{itemize}[leftmargin=*]
 {\bf \item Class komponenty} \newline
-Sú to triedy rozširujúce základnú triedu z Reactu s názvom Component. Majú prístup k lifecycle metódam Reactu ako napríklad render či state/props funkcionalite od rodičovskej triedy. V súčasnosti sú menej používané kvôli tomu, že sú komplikovanejšie ako functional komponenty. Aj keď stále existujú prípady, v ktorých je ich syntax potrebná, vo všeobecnosti sa pri vytváraní nového komponentu viac používa syntax functional kompononetu. Vo výpise \ref{classComponent} máme úvedený aj jednoduchý príklad class komponentu.  \\
+Sú to triedy rozširujúce základnú triedu z Reactu s názvom Component. Majú prístup k lifecycle metódam Reactu ako napríklad render či state/props funkcionalite od rodičovskej triedy. V súčasnosti sú menej používané kvôli tomu, že sú komplikovanejšie ako functional komponenty. Aj keď stále existujú prípady, v ktorých je ich syntax potrebná, vo všeobecnosti sa pri vytváraní nového komponentu viac používa syntax functional kompononetu. Vo \hyperref[classComponent]{výpise \ref{classComponent}} máme úvedený aj jednoduchý príklad class komponentu.  \\
 
 \begin{lstlisting}[  caption={Príklad class komponentu}, label={classComponent} ]
 import React, { Component } from 'react';
@@ -186,7 +240,7 @@ class Cat extends Component {
 export default Cat;
 \end{lstlisting}
 {\bf \item Functional komponenty} \newline
-Sú najjednoduchší spôsob vytvorenia komponentu. Ich deklarácia je v podstate rovnaká ako pri obyčajnej JavaScript funkcii. V minulosti sa za ich nevýhodu oproti class komponentom považovalo to, že neumožňovali správu stavov (states) a nemali prístup k lifecycle metódam ktoré React Native poskytuje. To sa zmenilo až po vydaní verzie 16.8.0 v roku 2019, v ktorej vývojári pridali Hooks, čím tento problém zanikol. Odvtedy sa ich popularita ešte zvýšila a stali sa novým štandartom. Na výpise \ref{funcComponent} môžeme vidieť, že je jednoduchšie ich udržiavať ``light weight'' a kód je pri nich čitateľnejší, ako pri class komponentoch. \\
+Sú najjednoduchší spôsob vytvorenia komponentu. Ich deklarácia je v podstate rovnaká ako pri obyčajnej JavaScript funkcii. V minulosti sa za ich nevýhodu oproti class komponentom považovalo to, že neumožňovali správu stavov (states) a nemali prístup k lifecycle metódam ktoré React Native poskytuje. To sa zmenilo až po vydaní verzie 16.8.0 v roku 2019, v ktorej vývojári pridali Hooks, čím tento problém zanikol. Odvtedy sa ich popularita ešte zvýšila a stali sa novým štandartom. Na \hyperref[funcComponent]{výpise \ref{funcComponent}} môžeme vidieť, že je jednoduchšie ich udržiavať ``light weight'' a kód je pri nich čitateľnejší, ako pri class komponentoch. \\
 
 \begin{lstlisting}[caption={Príklad function komponentu}, label={funcComponent}]
 import React from 'react';
@@ -263,7 +317,7 @@ V našom prípade sme si vybrali pracovať s Expom, keďže práca s ním je jed
 \subsection{Node.js}
 Node.js je open-source, cross-platformové, back-endové runtime prostredie JavaScriptu, ktoré beží na Chrome V8 JavaScript engine a vykonáva kód JavaScript mimo webového prehliadača. Tento engine prekladá JavaScriptový kód do rýchlejšieho strojového kódu. Strojový kód je nízkoúrovňový kód, ktorý počítač dokáže prečítať bez potreby ďalšej interpretácie. Vznik node.js bol logickým krokom po tom, ako vývojári JavaScriptu rozšírili použiteľnosť jazyka z čisto skriptovacieho, ktorý bolo možné používať a spúštať iba v prehliadači, na jazyk ktorý umožňuje vytvoriť samostatnú aplikáciu spustiteľnú aj mimo prehliadača. 
 
-Nesporným prínosom node.js je, že využíva tzv. event-driven non-blocking I/O model, ktorý ho robí efektívnym. I/O znamená input/output, čo môže byť čokoľvek od čítania resp. zapisovania lokálnych súborov, až po vytváranie HTTP requestov na API. Non - blocking znamená, že napríklad pri requeste na vytiahnutie údajov dvoch používateľov z databázy, daný request neblokuje vykonávanie ďalšieho kódu počas čakania na odpoveď. Na \hyperref[nodejsImg]{ obrázku \ref{nodejsImg}} nižšie možeme vidieť porovnanie blocking (vľavo) a non blocking modelu (vpravo) na spomenutom príklade s databázou. \\
+Nesporným prínosom node.js je, že využíva tzv. event-driven non-blocking I/O model, ktorý ho robí efektívnym. I/O alebo aj input/output, môže byť čokoľvek od čítania resp. zapisovania lokálnych súborov, až po vytváranie HTTP requestov na API. Non - blocking znamená, že napríklad pri requeste na vytiahnutie údajov dvoch používateľov z databázy, daný request neblokuje vykonávanie ďalšieho kódu počas čakania na odpoveď. Na \hyperref[nodejsImg]{ obrázku \ref{nodejsImg}} nižšie možeme vidieť porovnanie blocking (vľavo) a non blocking modelu (vpravo) na spomenutom príklade s databázou. \\
 
 \begin{figure}[!htbp]
   \centering  
@@ -280,7 +334,7 @@ Je package manager pre JavaScript, ktorý pomáha riadiť dodatočne doinštalov
 
 Node.js prichádza s predinštalovaným package managerom npm. Napriek tomu sme sa rozhodli použiť yarn, ktorý bol vytvorený Facebookom, tak isto ako React Native a preto práca s ním bola konzistentnejšia a bez väčších problémov na rozdiel od npm. \\
 \subsubsection{Axios}
-Axios je knižnica pre JavaScript, ktorá sa používa na vytváranie HTTP requestov z node.js alebo XMLHttpRequests z prehliadača, ktorý podporuje aj ES6 promise API. \\
+Axios je knižnica pre JavaScript, ktorá sa používa na vytváranie HTTP requestov z node.js alebo XMLHttpRequests z prehliadača. Podporuje aj ES6 promise API, pričom ešte viac uľahčuje celý proces okolo requestov tým, že ešte viac zlepšila dobre fungujúcu fetch() funckiu z JS a vylepšila error handling. \\
 
 
 \subsection{TMDb API}
@@ -295,9 +349,9 @@ Poskytuje backendové služby, jednoducho použiteľné SDK a predpripravené UI
 \subsubsection{Cloud firestore}
 Cloud Firestore je škálovateľná NoSQL cloudová databáza, pre vývoj mobilných a webových aplikácii. Udržuje dáta synchronizované medzi klientskými aplikáciami prostredníctvom listenerov v reálnom čase. Ponúka bezproblémovú integráciu s ostatnými produktami Firebase a Google Cloud vrátane cloudových funkcií. 
 
-Vo firestore dátovom modeli \hyperref[firestore]{(viď. obrázok \ref{firestore})}, sa dáta ukladajú do tzv. dokumentov, ktoré obsahujú polia (fields) namapované na konkrétne hodnoty. Tieto dokumenty sú ukladané do kolekcií, ktoré slúžia ako kontainer pre viacero dokumentov. Dokumenty podporujú mnoho rôznych dátových typov, od jednoduchých ako sú napríklad reťazce alebo čísla, až po komplexnejšie ako mapy, polia alebo komplexné vnorené objekty. Vytvoriť komplexnú databázu umožňuje vytváranie subkolekcií v rámci dokumentu (tj. kolekcie osbahujú dokumenty, ktoré obsahujú kolekcie a tie obsahujú ďalšie dokumenty atď.). \cite{firestoredoc}
+Vo firestore dátovom modeli \hyperref[firestore]{(pozri obr. \ref{firestore})}, sa dáta ukladajú do tzv. dokumentov, ktoré obsahujú polia (fields) namapované na konkrétne hodnoty. Tieto dokumenty sú ukladané do kolekcií, ktoré slúžia ako kontainer pre viacero dokumentov. Dokumenty podporujú mnoho rôznych dátových typov, od jednoduchých ako sú napríklad reťazce alebo čísla, až po komplexnejšie ako mapy, polia, alebo komplexné vnorené objekty. Vytvoriť komplexnú databázu umožňuje vytváranie subkolekcií v rámci dokumentu (tj. kolekcie osbahujú dokumenty, ktoré obsahujú kolekcie a tie obsahujú ďalšie dokumenty atď.). \cite{firestoredoc}
   
-Friebase ponúka aj druhý typ databázy, Firebase Realtime Database, čo je tiež NoSQL cloudová databáza. Avšak, oproti firestore ponúka jednoduchší dátový model, v ktorom sa dáta ukladajú iba vo formáte JSON, čo je vhodné iba pri jednoduchšej dátovej struktúre a tiež nepodporuje používanie zložitejších queries. Firestore bol teda v našom prípade lepšou voľbou v oboch prípadoch. \\
+Friebase ponúka aj druhý typ databázy, Firebase Realtime Database, čo je tiež NoSQL cloudová databáza. Avšak, oproti firestore ponúka jednoduchší dátový model, v ktorom sa dáta ukladajú iba vo formáte JSON, čo je vhodné iba pri jednoduchšej dátovej štruktúre. Taktiež nepodporuje používanie zložitejších queries. Firestore bol teda v našom prípade lepšou voľbou v oboch prípadoch. \\
 
 \begin{figure}[!htbp]
   \centering  
@@ -308,6 +362,7 @@ Friebase ponúka aj druhý typ databázy, Firebase Realtime Database, čo je tie
 	\caption{Znázornenie dátového modelu Cloud Firestore}  
   \label{firestore}
 \end{figure}
+
 
 
 
