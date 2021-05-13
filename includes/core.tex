@@ -1,6 +1,7 @@
 \section{Teoretická časť}
 
 \subsection{Odporúčacie systémy}
+\label{sec:odporucacie systemy}
  Odporúčacie systémy predstavujú súbor softvérových nástrojov a techník, ktoré poskytujú používateľovi odporúčania ohľadom daného súboru položiek. Odporúčania súvisia s rôznymi rozhodovacími procesmi, ako napríklad akú položku kúpiť, akú hudbu počúvať alebo aké online noviny  čítať. \cite{rs1} Dalo by sa teda povedať, že ich hlavným cieľom je odporučiť danému používateľovi jemu relevantné položky. "Položka" je termín, ktorý označuje čo konkrétne daný odporúčací systém odporúča používateľom. Vzhľadom nato, že odporúčania sú väčšinou personalizované, rôzny používatelia dostávajú rozličné odporúčania. Existujú aj nepersonalizované odporúčania. Tie fungujú na jednoduchšom princípe a je ľahšie ich generovať. Typickým príkladom sú rebríčky, ktoré obsahujú výber top 10 najoblúbenjších položiek. Personalizované odporúčania v ich najjednouchšej forme sú zoradené zoznamy položiek.
  
 Keď sa pozrieme na dôležitosť týchto systémov, v určitých odvetviach zohrávajú dôležitú rolu. Väčšina veľkých internetových služieb ako Amazon, YouTube, Netflix, Google, Tripadvisor či IMDb, majú vyvinuté svoje vlastné odporúčacie systémy, ktoré dlhodobo pomahajú zlepšovať ich výsledky, ale aj UX. Tak isto aj mnoho mediálnych firiem už dnes vyvíja odporúčacie systémy, ktoré potom nasadzujú a používajú ako časť služby, ktorú poskytujú svojim odoberateľom. Netflix v roku 2009 ocenil tím programátorov, ktorý ako prvý úspešne zefektívnil ich odporúčací systém o takmer 10\%, cenou 1 milión dolárov. To len podčiarkuje ich významnosť a fakt, že svetové firmy do tejto technológie investujú nemalé finančné prostriedky.  \\
@@ -136,6 +137,7 @@ Na získavanie feedbacku od používateľa sa používajú dve spôsoby:
 \subsection{Mobilné aplikácie}
 Mobilná aplikácia je softvérová aplikácia vytvorená špecificky pre mobilné zariadenia ako napríklad smartfóny, tablety alebo inteligentné hodinky. Pôvodne boli aplikácie vytvárané výrobcami mobilných operačných systémov, ktorí potrebovali pre používateľov zjednodušiť používanie základných funkcií smartfónu, ako napríklad prezeranie emailov, správ o počasí, prácu s kalendárom, fotenie fotografií atď. Avšak, vďaka rýchlemu vývinu samotných smartfónov a ich operačných systémov, začal rásť dopyt aj po aplikáciách zameraných na iné oblasti. V dnešnej dobe sú najpopulárnejšie rôzne herné aplikácie, navigačné aplikácie, aplikácie na online komunikáciu, hudobné aplikácie a mnohé iné. V posledných rokoch si používanie smartfónu bez spomenutých aplikácií ani nevieme predstaviť a stali sa ich neoddeliteľnou súčasťou. Aplikácie sa väčšinou sťahujú z distribučných platforiem, ktoré sú prevádzkované vlastníkom daného operačného systému, na ktorý je aplikácia určená. Spomeniem dva najväčšie a to App Store patriaci pod operačný systém iOS a Google Play Store patriaci pod Android. Na oboch platformách vieme nájsť veľké množstvo aplikácií všemožného zamerania, pričom každým dňom pribúdajú ďalšie. Niektoré sú bezplatné, iné spoplatnené tvorcom, pričom zárobok z nej sa delí medzi tvorcu aplikácie a distribučnú platformu. \\
 \subsubsection{Typy mobilných aplikácií}
+\label{sec:typy aplikacii}
 Vo všeobecnosti sa mobilné aplikácie delia na 3 základné kategórie. Natívne aplikácie, webové aplikácie a hybridné aplikácie. Dnes však už je pri niektorých frameworkoch ťažké určiť, do ktorej kategórie presne patria, keďže kombinujú vlastnosti viacerých z nich, preto sme spomenuli aj tzv. cross-platform aplikácie.
 \begin{itemize}[leftmargin=*]
 {\bf \item Natívne aplikácie} - sú vytvorené výlučne pre špecifický mobilný operačný systém tj. napríklad natívne Android aplikácie alebo natívne iOS aplikácie. Kvôli špecifickému zameraniu na jeden operačný systém nie je možné aplikácie kombinovať na rôznych platformách. Napríklad Blackberry aplikácia nie je spustiteľná na Androide, Windows Phone aplikáciu zase nespustíme na iOS. Teda všeobecne povedané, mobilnú aplikáciu nainštalujete a spustíte len na operačnom systéme, pre ktorý je vytvorená. Inštalujú sa priamo do mobilného zariadenia, potrebné dáta sú väčšinou uložené priamo v internom úložišku zariadenia. \\
@@ -366,10 +368,20 @@ Friebase ponúka aj druhý typ databázy, Firebase Realtime Database, čo je tie
 
 
 
-
-
-
 \section{Analytická časť}
+\subsection{Analýza problému}
+V dnešnej dobe, kedy ponuka produktov v jednotlivých odvetviach je enormná, je častým problémom pre používateľov vyfiltrovať len tie produkty, o ktoré majú reálne záujem a vyhovujú ich kritériám. To podmienilo vznik odporúčacích systémov \hyperref[sec:odporucacie systemy]{(kapitola 1.1)}, ktoré sa dnes vo veľkej miere využívajú naprieč celým IT svetom. 
+
+Jedným z prípadov, pri ktorom sa s daným problémom často stretávame, je aj výber filmového titulu. S príchodom streamovacích služieb ako Netflix, Amazon Prime, Hulu či HBO GO, vďaka ktorým sú dostupné milióny titulov, je veľmi náročné vybrať si tie, ktoré budú vyhovovať našim preferenciám. Vačšina spoločností to vyriešila zavedením odporúčacích systémov a používaním rôznych rebríčkov popularity 
+
+
+
+\subsection{Existujúce riešenia problému}
+Na začiatku práce sme analyzovali už existujúce riešenia. V tom čase bola na OS Android dostupná len 1 aplikácia s podobnou funkcionalitou vytvorená v roku 2019. Aplikácia MovieMatch má však viacero nevýhod oproti riešeniu, ktoré sme zvolili my. Rozdiel je napríklad v tom, že nie je možné v nej hodnotiť filmy swipeovaním bez toho, aby používateľ bol súčasťou skupiny. Po nainštalovaní a spustení, vygeneruje aplikácia kód, ktorý treba poslať iným používateľom, aby sa mohli pripojiť do jeho skupiny. Tak isto sa používateľ vie pripojiť do inej skupiny pomocou kódu danej skupiny. Toto riešenie spôsobuje, že používateľ je zavislý od iných používateľov a bez nich je aplikácia nepoužiteľná. Veľké mínus je aj spôsob implementácie ako webovej aplikácie (otvára sa v prehliadači). To vzhľadom na štandardy vývoja mobilných aplkácií, nie je dostatočne moderné riešenie a UI oproti natívnym a hybridným aplikáciám pôsobí zastaralo. Detailnému porovnaniu typov mobilných aplikácií sme sa venovali v \hyperref[sec:typy aplikacii]{kapitole 1.2.} 
+
+Neskôr vo februári 2021 vznikla druhá aplikácia na Google Play Store. Tá 
+
+
 \section{Návrhová časť}
 \section{Implementačná časť}
 
