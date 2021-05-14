@@ -13,11 +13,11 @@ Existuje viacero dôvodov, prečo môžu poskytovatelia služieb chcieť túto t
 
 {\bf \item Predávať rôznorodý tovar} - ďalšia významná funkcia je umožniť používatelovi vybrať si položky, ktoré by bez odporúčania ťažšie našiel.
  
-	{\bf \item Zvýšiť spokojnosť používateľa} - dobre fungujúci odporúčaci systém, vie zlepšiť aj celkový UX, čo v konečnom dôsledku zabezpečí, že používateľ bude odporúčania rád využívať.
+{\bf \item Zvýšiť spokojnosť používateľa} - dobre fungujúci odporúčaci systém, vie zlepšiť aj celkový UX, čo v konečnom dôsledku zabezpečí, že používateľ bude odporúčania rád využívať.
 
-	{\bf \item Zvýšiť vernosť používateľa} - akonáhle používateľ zaregistruje, na základe presných odporúčaní, že ho služba "pozná", nadobudne pocit, že ho považuje za hodnotného zakazníka a bude sa rád vracať.
+{\bf \item Zvýšiť vernosť používateľa} - akonáhle používateľ zaregistruje, na základe presných odporúčaní, že ho služba "pozná", nadobudne pocit, že ho považuje za hodnotného zakazníka a bude sa rád vracať.
 	
-	{\bf \item Lepšie rozumieť tomu, čo zákazník chce} - pomocou zbierania rôznych používateľských preferencií a následného analyzovania, vedia firmy lepšie reagovať na trh a zmeny na ňom a tým prispôsobovať svoj sortiment potrebám trhu.  \newline
+{\bf \item Lepšie rozumieť tomu, čo zákazník chce} - pomocou zbierania rôznych používateľských preferencií a následného analyzovania, vedia firmy lepšie reagovať na trh a zmeny na ňom a tým prispôsobovať svoj sortiment potrebám trhu.  \newline
 
 \end{itemize} 
 
@@ -370,16 +370,20 @@ Friebase ponúka aj druhý typ databázy, Firebase Realtime Database, čo je tie
 
 \section{Analytická časť}
 \subsection{Analýza problému}
-V dnešnej dobe, kedy ponuka produktov v jednotlivých odvetviach je enormná, je častým problémom pre používateľov vyfiltrovať len tie produkty, o ktoré majú reálne záujem a vyhovujú ich kritériám. To podmienilo vznik odporúčacích systémov \hyperref[sec:odporucacie systemy]{(kapitola 1.1)}, ktoré sa dnes vo veľkej miere využívajú naprieč celým IT svetom. 
+V dnešnej dobe, kedy ponuka produktov v jednotlivých odvetviach je enormná, je častým problémom pre používateľov vyfiltrovať len tie produkty, o ktoré majú reálne záujem a vyhovujú ich kritériám. To podmienilo vznik odporúčacích systémov \hyperref[sec:odporucacie systemy]{(kapitola 1.1)}, ktoré sa dnes vo veľkej miere využívajú naprieč celým technologickým svetom. 
 
-Jedným z prípadov, pri ktorom sa s daným problémom často stretávame, je aj výber filmového titulu. S príchodom streamovacích služieb ako Netflix, Amazon Prime, Hulu či HBO GO, vďaka ktorým sú dostupné milióny titulov, je veľmi náročné vybrať si tie, ktoré budú vyhovovať našim preferenciám. Vačšina spoločností to vyriešila zavedením odporúčacích systémov a používaním rôznych rebríčkov popularity 
+Jedným z prípadov, pri ktorom sa s daným problémom často stretávame, je aj výber filmového titulu. S príchodom streamovacích služieb ako Netflix, Amazon Prime, Hulu či HBO GO, vďaka ktorým sú dostupné milióny titulov, je veľmi náročné vybrať si tie, ktoré budú vyhovovať našim preferenciám. Vačšina spoločností to vyriešila zavedením odporúčacích systémov a používaním rôznych rebríčkov popularity. To však vyriešilo iba situáciu ak sa používateľ rozhodne pozerať film sám. Bežne sa však stáva, že ľudia chcú pozerať film vo dvojici a pri spoločnom výbere filmu strávia neprimerane veľa času prezeraním rôznych filmových databáz a rebríčkov filmov. 
+
+To nás viedlo k záveru, že by sa tento proces výberu dal zjednodušiť mobilnou aplikáciou, založenou na odporúčacích systémoch. Používateľ by v nej vedel hodnotiť filmy swipeovaním a aplikácia by sa postupne učila jeho preferenciám. Pri spojení dvoch používateľov, by aplikácia na základe ich interakcií vygenerovala zoznam filmov, z ktorého si obaja budú môcť vybrať ten, ktorý ich najviac zaujme. Aplikácia im následne bude vedieť zobraziť tie, ktoré spoločne označili za zaujimavé.
 
 
 
 \subsection{Existujúce riešenia problému}
-Na začiatku práce sme analyzovali už existujúce riešenia. V tom čase bola na OS Android dostupná len 1 aplikácia s podobnou funkcionalitou vytvorená v roku 2019. Aplikácia MovieMatch má však viacero nevýhod oproti riešeniu, ktoré sme zvolili my. Rozdiel je napríklad v tom, že nie je možné v nej hodnotiť filmy swipeovaním bez toho, aby používateľ bol súčasťou skupiny. Po nainštalovaní a spustení, vygeneruje aplikácia kód, ktorý treba poslať iným používateľom, aby sa mohli pripojiť do jeho skupiny. Tak isto sa používateľ vie pripojiť do inej skupiny pomocou kódu danej skupiny. Toto riešenie spôsobuje, že používateľ je zavislý od iných používateľov a bez nich je aplikácia nepoužiteľná. Veľké mínus je aj spôsob implementácie ako webovej aplikácie (otvára sa v prehliadači). To vzhľadom na štandardy vývoja mobilných aplkácií, nie je dostatočne moderné riešenie a UI oproti natívnym a hybridným aplikáciám pôsobí zastaralo. Detailnému porovnaniu typov mobilných aplikácií sme sa venovali v \hyperref[sec:typy aplikacii]{kapitole 1.2.} 
+Na začiatku práce sme analyzovali už existujúce riešenia. Je dôležíté poznamenať, že v čase zadania práce nebola dostupná aplikácia, ktorá by spĺňala podobnú funkcionalitu a bola by dostupná na oba OS (Android aj iOS). 
 
-Neskôr vo februári 2021 vznikla druhá aplikácia na Google Play Store. Tá 
+Na OS Android bola dostupná len 1 aplikácia vytvorená v roku 2019, avšak už dlhšie nepodporovaná vývojárom. Aplikácia s názvom MovieMatch má však viacero nevýhod oproti riešeniu, ktoré sme zvolili my. Rozdiel je napríklad v tom, že nie je možné v nej hodnotiť filmy swipeovaním bez toho, aby používateľ bol súčasťou skupiny. Po nainštalovaní a spustení, vygeneruje aplikácia kód, ktorý treba poslať iným používateľom, aby sa mohli pripojiť do jeho skupiny. Tak isto sa používateľ vie pripojiť do inej skupiny pomocou kódu danej skupiny. Toto riešenie spôsobuje, že používateľ je zavislý od iných používateľov a bez nich je aplikácia nepoužiteľná. Veľkou slabinou je aj spôsob implementácie ako webovej aplikácie (otvára sa v prehliadači). To vzhľadom na štandardy vývoja mobilných aplikácií, nie je dostatočne moderné riešenie a UI oproti natívnym a hybridným aplikáciám pôsobí zastaralo. Detailnému porovnaniu typov mobilných aplikácií sme sa venovali v \hyperref[sec:typy aplikacii]{kapitole 1.2.} 
+
+Na iOS v čase zadania práce podobná aplikácia nebola k dispozicií. To sa neskôr zmenilo keď v marci tohto roku vyšla aplikácia Movie Match. Funkcionalitou a vzhľadom je na tom omnoho lepšie ako spomínaná Android aplikácia. Ako nevýhodu však považujeme, že ak sa používateľ chce spojiť s iným používateľom, musí to riešiť len zadaním jeho mailu. Aplikácia potom upozorní druhého používateľa mailom, nie priamo v aplikácií, čo je nepraktické, hlavne ak je už používateľ v aplikácií zaregistrovaný. 
 
 
 \section{Návrhová časť}
