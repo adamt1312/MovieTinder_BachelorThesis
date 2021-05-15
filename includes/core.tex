@@ -340,7 +340,7 @@ Axios je knižnica pre JavaScript, ktorá sa používa na vytváranie HTTP reque
 
 
 \subsection{TMDb API}
-The Movie Database (TMDb), je databáza filmov a TV seriálov, ktorá bola vytvorená v roku 2008 úzkou komunitou ľudí, ktorá sa neskôr postupne rozrástla. Dnes je TMDb používaná vyše 400 000 developermi a firmami. Úspech im prinisela hlavne ich dostupná API, ktorá je zadarmo a ponúka širokú škálu queries pomocou ktorých je možné získať podrobné informácie o filmových tituloch. Ich veľkou prednosťou je aj množstvo dostupných titulných plagátov k filmom vo vysokej kvalite. \\
+The Movie Database (TMDb), je databáza filmov a TV seriálov, ktorá bola vytvorená v roku 2008 úzkou komunitou ľudí, ktorá sa neskôr postupne rozrástla. Dnes je TMDb používaná vyše 400 000 developermi a firmami. Úspech im prinisela hlavne ich dostupná API, ktorá je zadarmo a ponúka širokú škálu queries pomocou ktorých je možné získať podrobné informácie o filmových tituloch. Ich veľkou prednosťou je aj množstvo dostupných titulných plagátov k filmom vo vysokej kvalite. Jedinou jej nevýhodou je, že popularitou zatiaľ nedosahuje úroveň najväčšej databázy na svete IMDB a pri niektorých filmoch niesú ich hodnotenia kredibilné. \\
 
 \subsection{Firebase}
 Firebase je platforma vyvinutá spoločnosťou Google, ktorá pomáha vytvárať, zlepšovať a rozširovať funkcionalitu aplikácií. Obsahuje sadu nástrojov , ktoré pokrývajú veľkú časť služieb, ktoré by si vývojári museli inak sami naprogramovať. Patria sem napríklad analytika, autentifikácia používateľov, databázy, konfigurácia, ukladanie súborov, doručovanie push notifikácií a mnoho iného. Služby sú uložené v cloude a sú škálovateľné s malým resp. minimálnym úsilím zo strany vývojára. \\
@@ -349,6 +349,7 @@ Firebase je platforma vyvinutá spoločnosťou Google, ktorá pomáha vytvárať
 Poskytuje backendové služby, jednoducho použiteľné SDK a predpripravené UI knižnice na autentifikáciu používateľov v aplikácii. Podporuje autentifikáciu pomocou hesla, telefónneho čísla, Googlu, Facebooku a Twitteru. Je úzko integrovaná s ostatnými službami Firebase a využíva  štandardy ako OAuth 2.0 a OpenID Connect, takže ju možno ľahko integrovať do vlastného backendu. Okrem autentifikácie umožňuje aj registráciu a správu zaregistrovaných používateľov. V našej aplikácií sme si zvolili použiť autentifikáciu pomocou hesla. \\
 
 \subsubsection{Cloud firestore}
+\label{sec:firestore}
 Cloud Firestore je škálovateľná NoSQL cloudová databáza, pre vývoj mobilných a webových aplikácii. Udržuje dáta synchronizované medzi klientskými aplikáciami prostredníctvom listenerov v reálnom čase. Ponúka bezproblémovú integráciu s ostatnými produktami Firebase a Google Cloud vrátane cloudových funkcií. 
 
 Vo firestore dátovom modeli \hyperref[firestore]{(pozri obr. \ref{firestore})}, sa dáta ukladajú do tzv. dokumentov, ktoré obsahujú polia (fields) namapované na konkrétne hodnoty. Tieto dokumenty sú ukladané do kolekcií, ktoré slúžia ako kontainer pre viacero dokumentov. Dokumenty podporujú mnoho rôznych dátových typov, od jednoduchých ako sú napríklad reťazce alebo čísla, až po komplexnejšie ako mapy, polia, alebo komplexné vnorené objekty. Vytvoriť komplexnú databázu umožňuje vytváranie subkolekcií v rámci dokumentu (tj. kolekcie osbahujú dokumenty, ktoré obsahujú kolekcie a tie obsahujú ďalšie dokumenty atď.). \cite{firestoredoc}
@@ -368,25 +369,55 @@ Friebase ponúka aj druhý typ databázy, Firebase Realtime Database, čo je tie
 
 
 
-\section{Analytická časť}
+\section{Analytická a návrhová časť}
 \subsection{Analýza problému}
 V dnešnej dobe, kedy ponuka produktov v jednotlivých odvetviach je enormná, je častým problémom pre používateľov vyfiltrovať len tie produkty, o ktoré majú reálne záujem a vyhovujú ich kritériám. To podmienilo vznik odporúčacích systémov \hyperref[sec:odporucacie systemy]{(kapitola 1.1)}, ktoré sa dnes vo veľkej miere využívajú naprieč celým technologickým svetom. 
 
-Jedným z prípadov, pri ktorom sa s daným problémom často stretávame, je aj výber filmového titulu. S príchodom streamovacích služieb ako Netflix, Amazon Prime, Hulu či HBO GO, vďaka ktorým sú dostupné milióny titulov, je veľmi náročné vybrať si tie, ktoré budú vyhovovať našim preferenciám. Vačšina spoločností to vyriešila zavedením odporúčacích systémov a používaním rôznych rebríčkov popularity. To však vyriešilo iba situáciu ak sa používateľ rozhodne pozerať film sám. Bežne sa však stáva, že ľudia chcú pozerať film vo dvojici a pri spoločnom výbere filmu strávia neprimerane veľa času prezeraním rôznych filmových databáz a rebríčkov filmov. 
+Jedným z prípadov, pri ktorom sa s daným problémom často stretávame, je aj výber filmového titulu. S príchodom streamovacích služieb ako Netflix, Amazon Prime, Hulu či HBO GO, vďaka ktorým sú dostupné milióny titulov, je veľmi náročné vybrať si tie, ktoré budú vyhovovať osobným preferenciám jednotlivca. Vačšina spoločností to vyriešila zavedením odporúčacích systémov a používaním rôznych rebríčkov popularity. To však vyriešilo iba situáciu, ak sa človek rozhodne pozerať film sám. Bežne sa však stáva, že ľudia chcú pozerať film vo dvojici a pri spoločnom výbere filmu strávia neprimerane veľa času prezeraním rôznych filmových databáz a rebríčkov filmov. 
 
-To nás viedlo k záveru, že by sa tento proces výberu dal zjednodušiť mobilnou aplikáciou, založenou na odporúčacích systémoch. Používateľ by v nej vedel hodnotiť filmy swipeovaním a aplikácia by sa postupne učila jeho preferenciám. Pri spojení dvoch používateľov, by aplikácia na základe ich interakcií vygenerovala zoznam filmov, z ktorého si obaja budú môcť vybrať ten, ktorý ich najviac zaujme. Aplikácia im následne bude vedieť zobraziť tie, ktoré spoločne označili za zaujimavé.
-
+To nám vnuklo myšlienku, že by sa tento proces výberu dal zjednodušiť moderným riešením pomocou mobilnej aplikácie, založenej na odporúčacích systémoch. V rámci implementácie, sme sa rozhodli, že by bolo vhodné, aby fungovala pre oba populárne operačné systémy (Android aj iOS), vďaka čomu používatelia nebudú obmedzovaní a viazaní na jeden operačný systém. Zvolením frameworku React Native sme teda zabezpečili vytvorenie tzv. cross platformovej aplikácie (\hyperref[sec:typy aplikacii]{kapitola 1.2.}). 
+Používateľ by v nej vedel hodnotiť filmy swipeovaním a aplikácia by sa postupne učila jeho preferenciám. Pri spojení dvoch používateľov by aplikácia na základe ich interakcií s filmami vygenerovala zoznam filmov, z ktorého si obaja budú môcť vybrať tie, ktoré ich najviac zaujmú. Aplikácia im následne bude vedieť zobraziť zhody v ich hodnoteniach.
 
 
 \subsection{Existujúce riešenia problému}
-Na začiatku práce sme analyzovali už existujúce riešenia. Je dôležíté poznamenať, že v čase zadania práce nebola dostupná aplikácia, ktorá by spĺňala podobnú funkcionalitu a bola by dostupná na oba OS (Android aj iOS). 
+Na začiatku práce sme analyzovali už existujúce riešenia. Je dôležité poznamenať, že v čase zadania práce nebola dostupná aplikácia, ktorá by obsahovala podobnú funkcionalitu a bola by dostupná na oba spomínané operačné systémy. 
 
-Na OS Android bola dostupná len 1 aplikácia vytvorená v roku 2019, avšak už dlhšie nepodporovaná vývojárom. Aplikácia s názvom MovieMatch má však viacero nevýhod oproti riešeniu, ktoré sme zvolili my. Rozdiel je napríklad v tom, že nie je možné v nej hodnotiť filmy swipeovaním bez toho, aby používateľ bol súčasťou skupiny. Po nainštalovaní a spustení, vygeneruje aplikácia kód, ktorý treba poslať iným používateľom, aby sa mohli pripojiť do jeho skupiny. Tak isto sa používateľ vie pripojiť do inej skupiny pomocou kódu danej skupiny. Toto riešenie spôsobuje, že používateľ je zavislý od iných používateľov a bez nich je aplikácia nepoužiteľná. Veľkou slabinou je aj spôsob implementácie ako webovej aplikácie (otvára sa v prehliadači). To vzhľadom na štandardy vývoja mobilných aplikácií, nie je dostatočne moderné riešenie a UI oproti natívnym a hybridným aplikáciám pôsobí zastaralo. Detailnému porovnaniu typov mobilných aplikácií sme sa venovali v \hyperref[sec:typy aplikacii]{kapitole 1.2.} 
+Na OS Android bola dostupná len 1 aplikácia vytvorená v roku 2019, avšak už dlhšie nepodporovaná vývojárom. Aplikácia s názvom MovieMatch má však viacero nevýhod oproti riešeniu, ktoré sme zvolili my. Rozdiel je napríklad v tom, že nie je možné v nej hodnotiť filmy swipeovaním bez toho, aby používateľ bol súčasťou skupiny. Po nainštalovaní a spustení, vygeneruje aplikácia kód, ktorý treba poslať iným používateľom, aby sa mohli pripojiť do jeho skupiny. Tak isto sa používateľ vie pripojiť do inej skupiny pomocou kódu danej skupiny. Toto riešenie spôsobuje, že používateľ je zavislý od iných používateľov a bez nich je aplikácia nepoužiteľná. Veľkou slabinou je aj spôsob implementácie ako webovej aplikácie (otvára sa v prehliadači). To vzhľadom na štandardy vývoja mobilných aplikácií, nie je dostatočne moderné riešenie a UI oproti natívnym a hybridným (resp. cross platformovým) aplikáciám pôsobí zastaralo. Detailnému porovnaniu typov mobilných aplikácií sme sa venovali v \hyperref[sec:typy aplikacii]{kapitole 1.2.}
 
-Na iOS v čase zadania práce podobná aplikácia nebola k dispozicií. To sa neskôr zmenilo keď v marci tohto roku vyšla aplikácia Movie Match. Funkcionalitou a vzhľadom je na tom omnoho lepšie ako spomínaná Android aplikácia. Ako nevýhodu však považujeme, že ak sa používateľ chce spojiť s iným používateľom, musí to riešiť len zadaním jeho mailu. Aplikácia potom upozorní druhého používateľa mailom, nie priamo v aplikácií, čo je nepraktické, hlavne ak je už používateľ v aplikácií zaregistrovaný. 
+Na iOS v čase zadania práce podobná aplikácia nebola k dispozicií. To sa neskôr zmenilo, keď v marci tohto roku vyšla aplikácia Movie Match. Funkcionalitou a vzhľadom je na tom omnoho lepšie ako spomínaná Android aplikácia. Ako nevýhodu však považujeme, že ak sa používateľ chce spojiť s iným používateľom, musí to riešiť len zadaním jeho mailu, na ktorý mu aplikácia pošle pozvánku vo forme mailu. Toto riešenie je nepraktické, najmä ak je už používateľ v aplikácií zaregistrovaný. Intuitívnejším riešením by bolo mať takéto pozvánky zobrazené priamo v aplikácií.
 
 
-\section{Návrhová časť}
+\subsection{Návrh riešenia}
+Cieľom tejto bakalárskej práce je navrhnúť a implementovať mobilnú aplikáciu, 
+ktorá bude slúžiť ako pomocník pri spoločnom výbere filmu dvoch používateľov, ktorí sa v nej navzájom prepoja. Ná základe ich vybudovaného profilu preferencií jednotlivých atribútov filmov, sa im vygenerujú odporúčané filmy, ktoré budú mocť obaja hodnotiť a následne si pozrieť zhody. Používateľ bude vedieť hodnotiť filmy aj samostatne bez nutnosti byť prepojený s iným používateľom. Tým si môže postupne budovať svoj vlastný profil preferencií. 
+
+Všetka logika aplikácie prebieha na klienstkej strane aplikácie, keďže komplexnosť aplikácie si nevyžadovala rozdelenie na frontend a backend. Na vytvorenie aplikácie sme použili framework React Native, pričom na ukladanie dát nám slúži cloudová NoSQL databáza Firestore \hyperref[sec:firestore]{(kapitola 1.7.2)}. Ako zdroj filmových dát sme zvolili API s názvom TMDb.
+
+V ďalšej časti práce je návrh detailnejšie zvizualizovaný pomocou vybraných UML diagramov. 
+\subsubsection{Diagramy prípadov použitia}
+Lorem ipsum ...............
+
+\begin{figure}[!htbp]
+  \centering  
+  \def\stackalignment{c}
+	\stackunder{\includegraphics[width=15cm]{img/usecase1.png}}%
+           {\scriptsize}
+	\caption{Diagram prípadov použitia 1}  
+  \label{usecase1}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \centering  
+  \def\stackalignment{c}
+	\stackunder{\includegraphics[width=15cm]{img/usecase2.png}}%
+           {\scriptsize}
+	\caption{Diagram prípadov použitia 2}  
+  \label{usecase2}
+\end{figure}
+
+
+\subsubsection{Konceptuálny model}
+
 \section{Implementačná časť}
 
 
