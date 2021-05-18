@@ -340,7 +340,7 @@ Node.js prichádza s predinštalovaným package managerom npm. Napriek tomu sme 
 Axios je knižnica pre JavaScript, ktorá sa používa na vytváranie HTTP requestov z node.js alebo XMLHttpRequests z prehliadača. Podporuje aj ES6 promise API, pričom ešte viac uľahčuje celý proces okolo requestov tým, že ešte viac zlepšila dobre fungujúcu fetch() funckiu z JS a vylepšila error handling. \\
 
 
-\subsection{TMDb API}
+\subsection{TMDb}
 The Movie Database (TMDb), je databáza filmov a TV seriálov, ktorá bola vytvorená v roku 2008 úzkou komunitou ľudí, ktorá sa neskôr postupne rozrástla. Dnes je TMDb používaná vyše 400 000 developermi a firmami. Úspech im prinisela hlavne ich dostupná API, ktorá je zadarmo a ponúka širokú škálu queries pomocou ktorých je možné získať podrobné informácie o filmových tituloch. Ich veľkou prednosťou je aj množstvo dostupných titulných plagátov k filmom vo vysokej kvalite. Jedinou jej nevýhodou je, že popularitou zatiaľ nedosahuje úroveň najväčšej databázy na svete IMDB a pri niektorých filmoch niesú ich hodnotenia kredibilné. \\
 
 \subsection{Firebase}
@@ -373,25 +373,24 @@ Friebase ponúka aj druhý typ databázy, Firebase Realtime Database, čo je tie
 
 \section{Analytická a návrhová časť}
 \subsection{Analýza problému}
-V dnešnej dobe, kedy ponuka produktov v jednotlivých odvetviach je enormná, je častým problémom pre používateľov vyfiltrovať len tie produkty, o ktoré majú reálne záujem a vyhovujú ich kritériám. To podmienilo vznik odporúčacích systémov \hyperref[sec:odporucacie systemy]{(kapitola 1.1)}, ktoré sa dnes vo veľkej miere využívajú. 
+V dnešnej dobe, kedy je ponuka produktov na trhuv veľmi veľká a pestrá, býva častým problémom používateľov nájsť práve tie produkty o ktoré majú reálne záujem a vyhovujú ich kritériám. Práve tento problém bol motiváciou pre vznik odporúčacích systémov \hyperref[sec:odporucacie systemy]{(kapitola 1.1)}, ktoré sa dnes vo veľkej miere využívajú. 
 
-Jedným z prípadov, pri ktorom sa s daným problémom často stretávame, je aj výber filmového titulu. S príchodom streamovacích služieb ako Netflix, Amazon Prime, Hulu či HBO GO, vďaka ktorým sú dostupné milióny titulov, je veľmi náročné vybrať si tie, ktoré budú vyhovovať osobným preferenciám jednotlivca. Vačšina spoločností to vyriešila zavedením odporúčacích systémov a používaním rôznych rebríčkov popularity. To však vyriešilo iba situáciu, ak sa človek rozhodne pozerať film sám. Bežne sa však stáva, že ľudia chcú pozerať film vo dvojici a pri spoločnom výbere filmu strávia neprimerane veľa času prezeraním rôznych filmových databáz a rebríčkov filmov. 
+Jedným z prípadov, pri ktorom sa s daným problémom často stretávame, je výber filmového titulu. S príchodom streamovacích služieb ako Netflix, Amazon Prime, Hulu či HBO GO, vďaka ktorým sú dostupné milióny titulov, je veľmi náročné vybrať si tie, ktoré budú vyhovovať osobným preferenciám jednotlivca. Vačšina spoločností to vyriešila zavedením odporúčacích systémov a používaním rôznych rebríčkov popularity. To však vyriešilo iba situáciu, ak sa človek rozhodne pozerať film sám. Bežne sa však stáva, že ľudia chcú pozerať film vo dvojici a pri spoločnom výbere filmu strávia neprimerane veľa času prezeraním rôznych filmových databáz a rebríčkov filmov. 
 
-To nám vnuklo myšlienku, že by sa tento proces výberu dal zjednodušiť moderným riešením pomocou mobilnej aplikácie, založenej na odporúčacích systémoch.
+To nám vnuklo myšlienku, na tému tejto bakalárksej práce s cieľom zjednodušiť výber filmu  prostredníctvom mobilnej aplikácie, založenej na odporúčacích systémoch.
 
 \subsection{Existujúce riešenia problému}
-Na začiatku práce sme analyzovali už existujúce riešenia. Je dôležité poznamenať, že v čase zadania práce nebola dostupná aplikácia, ktorá by obsahovala podobnú funkcionalitu a bola by dostupná na oba spomínané operačné systémy. 
+Pri analýze súčasného stavu sme sa pozreli na existujúce riešenia, venujúce sa danej problematike. Je dôležité poznamenať, že v čase zadania práce nebola dostupná aplikácia, ktorá by obsahovala podobnú funkcionalitu a bola by dostupná na oba spomínané operačné systémy. 
 \subsubsection{Android OS}
-Na OS Android bola dostupná len 1 aplikácia vytvorená v roku 2019, avšak už dlhšie nepodporovaná vývojárom. Aplikácia s názvom MovieMatch má však viacero nevýhod oproti riešeniu, ktoré sme zvolili my. Rozdiel je napríklad v tom, že nie je možné v nej hodnotiť filmy swipeovaním bez toho, aby používateľ bol súčasťou skupiny. Po nainštalovaní a spustení, vygeneruje aplikácia kód, ktorý treba poslať iným používateľom, aby sa mohli pripojiť do jeho skupiny. Tak isto sa používateľ vie pripojiť do inej skupiny pomocou kódu danej skupiny. Toto riešenie spôsobuje, že používateľ je zavislý od iných používateľov a bez nich je aplikácia nepoužiteľná. Veľkou slabinou je aj spôsob implementácie ako webovej aplikácie (otvára sa v prehliadači). To vzhľadom na štandardy vývoja mobilných aplikácií, nie je dostatočne moderné riešenie a UI oproti natívnym a hybridným (resp. cross platformovým) aplikáciám pôsobí zastaralo. Detailnému porovnaniu typov mobilných aplikácií sme sa venovali v \hyperref[sec:typy aplikacii]{kapitole 1.2.}
+Na OS Android bola dostupná len 1 aplikácia vytvorená v roku 2019, avšak už dlhšie nepodporovaná vývojárom. Aplikácia s názvom MovieMatch má však viacero nevýhod oproti riešeniu, ktoré sme navrhli my. Základným prvkom tejto aplikácie je skupina, kým v žiadnej nie ste nemáte možnosť si prezerať a hodnotiť filmové tituly. Po nainštalovaní a spustení, vygeneruje aplikácia kód, ktorý treba poslať iným používateľom, aby sa mohli pripojiť do jeho skupiny. Tak isto sa používateľ vie pripojiť do inej skupiny pomocou kódu danej skupiny. Toto riešenie spôsobuje, že používateľ je zavislý od iných používateľov a bez nich je aplikácia nepoužiteľná.Nevýhodou tohto riešenia je aj spôsob implememtácie, vo forme webovej aplikácie, ktorá sa otvára priamo v prehliadači. To vzhľadom na súčasné štandardy vývoja mobilných aplikácií nie je najvhodnejšie riešenie a UI oproti natívnym a hybridným (resp. cross platformovým) aplikáciám pôsobí zastaralo. Detailnému porovnaniu typov mobilných aplikácií sme sa venovali v \hyperref[sec:typy aplikacii]{kapitole 1.2.}
 \subsubsection{iOS}
-Na iOS v čase zadania práce podobná aplikácia nebola k dispozicií. To sa neskôr zmenilo, keď v novembri 2020 vyšla aplikácia Movie Match. Funkcionalitou a vzhľadom je na tom omnoho lepšie ako spomínaná Android aplikácia. Ako nevýhodu však považujeme, že ak sa používateľ chce spojiť s iným používateľom, musí to riešiť len zadaním jeho emailu, na ktorý mu aplikácia pošle pozvánku vo forme emailu. Toto riešenie je nepraktické, najmä ak je už používateľ v aplikácií zaregistrovaný. Intuitívnejším riešením by bolo mať takéto pozvánky zobrazené priamo v aplikácií. 
+V čase zadania tejto bakalárskej práce nebola podobná aplikácia bežiaca na operačnom systéme iOS k dispozicií. To sa neskôr zmenilo, keď v novembri 2020 vyšla aplikácia Movie Match. Funkcionalitou a vzhľadom je na tom omnoho lepšie ako spomínaná Android aplikácia. Z jej používania však nie je jasné, či pri generovaní filmov využíva nejaký druh odporúčacieho algoritmu, alebo generuje filmy každému používateľovi rovnako. To ma za následok, že  používateľ nenadobudne pocit, že sa aplikácia časom prispôsobuje jeho preferenciám. 
 
 
 \subsection{Návrh riešenia}
-Cieľom tejto bakalárskej práce je navrhnúť a implementovať mobilnú aplikáciu, 
-ktorá bude slúžiť ako pomocník pri spoločnom výbere filmu dvoch používateľov. Na základe ich osobného profilu preferencií jednotlivých atribútov filmov, sa im vygenerujú odporúčané filmy, ktoré budú mocť obaja hodnotiť a následne si pozrieť zhody. Používateľ bude vedieť hodnotiť filmy aj samostatne bez nutnosti byť prepojený s iným používateľom. Hodnotenie filmov bude vo forme binárneho hodnotenia(like/dislike) a implementované pomocou známeho swipeovania doprava a doľava. Celý tento princíp obsahuje prvky content based filteringu, čo je jedna z metód odporúčacích systémov \hyperref[sec:contentbased]{(kapitola 1.1.6).}
+Cieľom tejto bakalárskej práce bolo navrhnúť a implementovať mobilnú aplikáciu, ktorá bude slúžiť ako pomocník pri spoločnom výbere filmu dvoch používateľov. Na základe ich osobného profilu preferencií jednotlivých atribútov filmov, sa im vygenerujú odporúčané filmy, ktoré budú mocť obaja hodnotiť a následne si pozrieť zhodu. Používateľ bude vedieť hodnotiť filmy aj samostatne bez nutnosti byť prepojený s iným používateľom. Hodnotenie filmov bude vo forme binárneho hodnotenia (like/dislike) a implementované pomocou známeho swipeovania na obrazovke doprava a doľava. Na základe týchto hodnotení sa mu menia preferencie a následne aj odporúčané tituly. Celý tento princíp obsahuje prvky content based filteringu, čo je jedna z metód odporúčacích systémov \hyperref[sec:contentbased]{(kapitola 1.1.6).}
 
-Všetka logika aplikácie prebieha na klienstkej strane aplikácie, keďže komplexnosť aplikácie si nevyžadovala rozdelenie na frontend a backend. V rámci implementácie, sme sa rozhodli, že by bolo vhodné, aby fungovala pre oba populárne operačné systémy (Android aj iOS), vďaka čomu používatelia nebudú obmedzovaní a viazaní na jeden operačný systém. Zvolením frameworku React Native sme teda zabezpečili vytvorenie cross platformovej aplikácie. Autentifikácia používateľa je formou emailu a hesla implementovaná pomocou Firebase Authentication. Ako úložisko dát nám slúži cloudová NoSQL databáza Firestore. Ako zdroj filmových dát sme zvolili databázu TMDb, pričom na prácu s dátami sme využívali aj ich API. 
+V rámci implementácie, sme sa rozhodli, že by bolo vhodné, aby fungovala pre oba populárne operačné systémy (Android aj iOS), vďaka čomu používatelia nebudú obmedzovaní a viazaní na jeden operačný systém. Zvolením frameworku React Native sme teda zabezpečili vytvorenie cross platformovej aplikácie. Autentifikácia používateľa je formou emailu a hesla implementovaná pomocou Firebase Authentication. Ako úložisko dát nám slúži cloudová NoSQL databáza Firestore. Ako zdroj filmových dát sme zvolili databázu TMDb, pričom na prácu s dátami sme využívali aj ich API. 
 \vspace{55mm} %5mm vertical space
 
 \begin{figure}[hbt!]
@@ -417,7 +416,7 @@ V ďalšej časti práce je návrh detailnejšie vizualizovaný pomocou vybraný
   \label{usecase1}
 \end{figure}
 
-Na \hyperref[usecase1]{diagrame 1} môžeme vidieť, že aplikácia rozlišuje 3 základné role a to neregistrovaný používateľ a neprihlásený (registrovaný) resp. prihlásený používateľ. Neregistrovaný používateľ sa vie zaregistrovať pomocou zvolenej prezývky, emailu a hesla. Následne ho aplikácia rovno prihlási pričom mu zobrazí krátky návod na oboznámenie sa s aplikáciou. Neprihlásený (registrovaný) používateľ sa vie prihlásiť pomocou emailu a hesla.
+Na \hyperref[usecase1]{obrázku 8} môžeme vidieť, že aplikácia rozlišuje 3 základné role a to neregistrovaný používateľ a registrovaný (treba opravit diagram) resp. prihlásený používateľ. Neregistrovaný používateľ sa vie zaregistrovať pomocou zvolenej prezývky, emailu a hesla. Následne ho aplikácia rovno prihlási pričom mu zobrazí krátky návod na oboznámenie sa s aplikáciou. Na jeho konci je z populárnych titulov vygenerovaný úvodný dotazník, v ktorom je požívateľ vyzvaný, aby pomocou swipeovania vybral aspoň 15 filmových titulov ktoré sa mu páčia. To zabezpečí, že sa profil preferencií nainicializuje. Registrovaný používateľ sa vie prihlásiť pomocou emailu a hesla.
 \pagebreak
 
 \begin{figure}[hbt!]
@@ -428,9 +427,11 @@ Na \hyperref[usecase1]{diagrame 1} môžeme vidieť, že aplikácia rozlišuje 3
 	\caption{Diagram prípadov použitia 2}  
   \label{usecase2}
 \end{figure}
-V \hyperref[usecase2]{diagrame 2} máme detailnejší popis aplikácie po prihlásení používateľa. Prihlásený používateľ má možnosť hodnotiť filmy, prípadne si pozrieť detail aktuálne zobrazeného filmu. Tak isto si vie zobraziť filmy, ktoré sa mu páčili. Vie si tiež zobraziť svoj profil so základnými informáciami o jeho účte a odhlásiť sa z aplikácie. 
-Po prihlásení môže používateľ nadobudnúť dve ďalšie podrole. Nespárovaný používateľ vie poslať žiadosť o spárovanie inému používateľovi, ktorú v prípade neobdržania odpovede vie aj zrušiť. Samozrejme vie aj prijať, prípadne odmietnuť žiadosť o spárovanie zo zoznamu žiadostí. 
-Spárovaný používateľ si môže zobraziť aktuálne spojenie, hodnotiť v ňom filmy a pozrieť si spoločné zhody. 
+Na \hyperref[usecase2]{obrázku 9} máme detailnejší popis aplikácie po prihlásení používateľa. Prihlásený používateľ má možnosť hodnotiť filmy, prípadne si pozrieť detail aktuálne zobrazeného filmu. Tak isto si vie zobraziť filmy, ktoré sa mu páčili. Vie si tiež zobraziť svoj profil so základnými informáciami o jeho účte a odhlásiť sa z aplikácie. Po prihlásení môže používateľ nadobudnúť dve ďalšie podrole.
+
+Nespárovaný používateľ vie poslať žiadosť o spárovanie inému používateľovi, ktorú v prípade neobdržania odpovede vie kedykoľvek zrušiť. Vďaka tomu sa vyhne situácií, kedy by sa zasekol v stave čakania na odpoveď. Po obdržaní takejto žiadosti, vie túto žiadosť odmietnuť alebo prijať. Prijatím sa automaticky spáruje s druhým používateľom a na základe ich profilov preferencií sa im vygenerujú spoločné odporúčané filmové tituly, ktoré vedia obaja používatelia hodnotiť. 
+
+Každý spárovaný používateľ má možnosť si pozrieť aktuálne spojenie, hodnotiť v ňom filmy, pozerať si spoločné zhody a v neposlednom rade má možnosť sa odpárovať a následne spárovať s ďalším používateľom. 
 
 \subsubsection{Diagram tried}
 \begin{figure}[hbt!]
@@ -441,12 +442,29 @@ Spárovaný používateľ si môže zobraziť aktuálne spojenie, hodnotiť v ň
 	\caption{UML diagram tried}  
   \label{classdiagram}
 \end{figure}
-\hyperref[classdiagram]{Obrázok 10} zobrazuje diagram tried aplikácie. Trieda user vyjadruje používateľa, session spojenie medzi dvoma používateľmi. Jeden používateľ môže byť v jeden moment súčasťou iba jedného spojenia. Trieda Movie vyjadruje film a InviteRequest pozvánku na spojenie. Každý používateľ môže obdržať viacero pozvánok, avšak prijať vie iba jednu. Trieda preferences je dôležitým prvkom v sýstéme odporúčaní, keďže pomocou nej sa generujú jednotlivé odporúčania.
+\hyperref[classdiagram]{Obrázok 10} zobrazuje diagram tried aplikácie. Ústredným prvkom našej aplikácie je trieda User, ktorá reprezentuje používateľov tohto systému. Používateľ vie byť v spojení s najviac jedným ďalším používateľom pomocou triedy Session. Táto trieda predstavuje spojenie medzi dvoma používateľmi a na základe preferencií, ktoré majú používatelia, sa v tomto spojení generujú odporúčané filomové tituly. Okrem toho je možné si v danom spojení pozrieť filmy, ktoré obaja používatelia hodnotili pozitívne. Samotný používateľ má vlastné spojenie s triedou Movie, vďaka ktorému si vie zobraziť filmy, ktoré sa mu páčili.
 
-Význam väčšiny atribútov je z ich názvu jasný, preto spomenieme len tie, ktoré považujeme za potrebné objasniť. Pri triede user atribút isPaired vyjadruje, či daný používateľ je spárovaný s iným používateľom a atribút sendRequest, či daný používateľ poslal žiadosť o spárovanie inému používateľovi. 
+Každý používateľ vie obdržať viacero pozvánok na spojenie, ktoré sú reprezentované triedou InviteRequest, avšak prijať vie práve jednu. Odoslať vie tak isto iba jednu, čo zabraňuje situácii, kedy by viacero používateľov prijalo pozvánku jedného používateľa. Po odoslaní je pozvánka v stave PENDING kým na ňu príjemca neodpovie. Po prijatí pozvánky sa medzi používateľmi vytvorí spojenie, v ktorom si spolu vyberajú filmové tituly až kým sa nerozhodnú toto spojenie ukončiť. Trieda Preferences je dôležitým prvkom v sýstéme odporúčaní, keďže pomocou nej sa generujú odporúčané tituly pre jednotlivé spojenia.
+
+%Význam väčšiny atribútov je z ich názvu jasný, preto spomenieme len tie, ktoré považujeme za potrebné objasniť. Pri triede User atribút isPaired vyjadruje, či daný používateľ je spárovaný s iným používateľom a atribút sendRequest, či daný používateľ poslal žiadosť o spárovanie inému používateľovi. 
 
 \section{Implementačná časť}
-V tejto časti práce sa pozrieme na celý implementačný proces od úvodného nastavenia a inštalácie až po konkrétne časti implementácie aplikácie.
+V tejto časti práce sa pozrieme na celý implementačný proces od úvodného nastavenia a inštalácie až po konkrétne časti implementácie aplikácie. 
+
+\subsection{Uvodná inštalácia a nastavenia}
+\subsubsection{React Native}
+\subsubsection{Firebase}
+\subsubsection{TMDb}
+\subsubsection{VSCode}
+\subsubsection{GitHub}
+
+
+\subsection{Štruktúra obrazoviek inštalácia a nastavenia}
+\subsubsection{React Navigation}
+\subsection{Prihlasovanie a registrácia}
+\subsection{Odporúčací algoritmus}
+\subsection{Mechanizmus párovania}
+
 
 
 
