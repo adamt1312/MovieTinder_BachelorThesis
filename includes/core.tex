@@ -449,21 +449,58 @@ Každý používateľ vie obdržať viacero pozvánok na spojenie, ktoré sú re
 %Význam väčšiny atribútov je z ich názvu jasný, preto spomenieme len tie, ktoré považujeme za potrebné objasniť. Pri triede User atribút isPaired vyjadruje, či daný používateľ je spárovaný s iným používateľom a atribút sendRequest, či daný používateľ poslal žiadosť o spárovanie inému používateľovi. 
 
 \section{Implementačná časť}
-V tejto časti práce sa pozrieme na celý implementačný proces od úvodného nastavenia a inštalácie až po konkrétne časti implementácie aplikácie. 
+V tejto časti práce sa pozrieme na celý implementačný proces od úvodného nastavenia a inštalácie potrebných nástrojov, až po konkrétne časti implementácie aplikácie.
 
 \subsection{Uvodná inštalácia a nastavenia}
-\subsubsection{React Native}
-\subsubsection{Firebase}
-\subsubsection{TMDb}
+Predtým ako sme začali s programovaním aplikácie, bolo treba nastaviť a nainštalovať potrebné nástroje.
 \subsubsection{VSCode}
+Ako vývojové prostredie sme si vybrali Visual Studio Code. Výber vychádzal hlavne z osobných preferencií a dostupnosti množstva užitočných rozšírení. Stiahli sme ho z \href{https://code.visualstudio.com/download}{oficiálnej stránky} vývojára.
+\subsubsection{React Native}
+\begin{itemize}
+{\item Ako prvé bolo treba nainštalovať Node.js z jeho \href{https://nodejs.org/en/download/}{oficiálnej stránky}. Kvôli stabilite sme stiahli LTS verziu. Inštalácia obsahuje aj predvolený package manager npm.} 
+{\item Keďže sme počas implementácie uprednostnili yarn namiesto npm, bolo ho treba najprv doinštalovať pomocou npm príkazu \textit{npm install -g yarn}.} 
+{\item Potom sme pomocou yarnu a príkazu \textit{yarn global add expo-cli}, nainštalovali Expo CLI.} 
+{\item Posledným krokom k úspešnému spusteniu aplikácie je nainštalovanie emulátora, ktorý bude slúžiť ako virtuálne prostredie pre spustenie našej aplikácie počas programovania. Expo CLI síce podporuje aj spustenie na reálnom zariadení, emulátor je však pohodlnejšie riešenie. V našom prípade, keďže sme aplikáciu programovali primárne pre Android OS, nám nato poslúži \href{https://developer.android.com/studio}{Android Studio}, ktoré túto funkcionalitu obsahuje.}
+\end{itemize}
+
+V tomto bode by sme mali byť schopný inicializovať aplikáciu príkazom \textit{expo init nazovProjektu}.
+Treba dodať, že občas sa počas inštalácie Expo CLI cez npm môže vyskytnúť chyba, kedy sa nepridá expo do systému ako environment variable. Následne po zadaní príkazu, príkazový riadok hlási chybu, že nepozná daný príkaz. To sa stalo aj v našom prípade. Riešením je buď ju pridať manuálne (čo nemusí vždy pomôcť), alebo preinštalovať Node.js a nainštalovať Expo CLI pomocou npm znova. Po preinštalovaní už príkaz funguje, vďaka čomu sme nainicializovali a vytvorili našu aplikáciu. 
+
+\subsubsection{Firebase}
+Keďže firebase je platforma vyvinutá Googlom, prihlasuje sa do nej pomocou google účtu. Po prejdení do konzoly, čo je časť kde sa dá vytvoriť a následne pracovať s projektom, si vytvoríme projekt s názvom našej aplikácie MovieTinderApp. Vo vnútri projektu zvolíme OS aplikácie, na ktorú ho chceme napojiť, v našom prípade Android OS.  
+\begin{figure}[hbt!]
+  \centering  
+  \def\stackalignment{c}
+	\stackunder{\includegraphics[height=7cm]{img/firebaseconsole.png}}%
+           {\scriptsize}
+	\caption{Firebase console menu}  
+  \label{fireconsole}
+\end{figure}
+Po zadaní povinných údajov ako názov aplikácie a názov android package, sa nám  vygeneruje objekt s konfigruračnými údajmi. Ten si skopírujeme a vložíme do novovytvoreného súboru v našej aplikácií s názvom keys.js. Tam budeme uchovávať všetky potrebné citlivé údaje ako napríklad API kľúče a podobne. Na \hyperref[classdiagram]{obrázku 11} vidíme ukážku menu z firebase console. Okrem týchto funkcií poskytuje aj všeobecný prehľad o aplikácií a rôzne štatistiky a analytické funkcie. 
+
+Posledným krokom inštalácie je pridanie firebase cez yarn príkazom \textit{yarn add firebase} a následné pridanie inicializácie v hlavnom súbore App.js pridaním \textit{firebase.initializeApp(config);}
+\subsubsection{Firebase authentication}
+Firebase ponuká mnoho rôznych spôsobov autentifikácie používateľa. My sme zvolili klasický pomocou emailu a hesla. Vo firebase console sme v záložke authentication povolili metódu prihlasovania email/password. 
+\subsubsection{TMDb}
+Na využívanie databázy filmových titulov TMDb resp. jej API, bolo potrebné si na webstránke služby založiť účet. Následne nám bol vygenerovaný API kľúč, ktorý sme vložili do spomínaného súboru keys.js. 
 \subsubsection{GitHub}
+Na zálohovanie zdrojového kódu sme použili \href{https://github.com/}{GitHub}, čo je voľne dostupná webová služba, ktorá poskytuje zálohu kódu, jeho verzionovanie prípadne sledovanie zmien a mnohé iné užitočné funkcie. Je jednou z najpopulárnejších služieb s týmto zameraním. Repozitár s našou aplikáciou je zverejnený na odkaze na \hyperref[ghqrcode]{obrázku nižšie}. 
 
-
+\begin{figure}[hbt!]
+  \centering   
+  \def\stackalignment{c}
+	\stackunder{\includegraphics[height=5cm]{img/github_qr.png}}%
+           {\scriptsize%
+            \url{https://github.com/adamt1312/MovieMatchApp}}
+	\caption{QR kód GitHub repozitára aplikácie}  
+  \label{ghqrcode}
+\end{figure}
 \subsection{Štruktúra obrazoviek inštalácia a nastavenia}
 \subsubsection{React Navigation}
 \subsection{Prihlasovanie a registrácia}
-\subsection{Odporúčací algoritmus}
 \subsection{Mechanizmus párovania}
+\subsection{Odporúčací algoritmus}
+
 
 
 
