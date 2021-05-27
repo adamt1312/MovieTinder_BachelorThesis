@@ -167,34 +167,32 @@ React Native aplikácia je zložená z dvoch častí, JavaScript kódu a natívn
 \begin{figure}[!htbp]
   \centering  
   \def\stackalignment{c}
-	\stackunder{\includegraphics[width=15cm]{img/rn-working.png}}%
+	\stackunder{\includegraphics[height=6.5cm]{img/rn-working.png}}%
            {\scriptsize%
             Zdroj: \cite{udemy}}
 	\caption{Ukážka fungovania React Native aplikácie}  
   \label{reactAppExplained}
 \end{figure}
 \subsubsection{Virtual \acrfull{dom}}
-Ďalším dôležitým konceptom v React Native, je tzv. Virtual DOM. DOM je vo všeobecnosti skratka pre Document Object Model (inak nazývaný aj real DOM), čo je programové rozhranie pre \acrshort{html} a \acrshort{xml} dokumenty. DOM reprezentuje dokument ako skupinu uzlov (tzv. "nodes") a objektov. To umožňuje jazykom ako napríklad JavaScript modifikovať dané uzly a tým aj celý dokument. DOM je reprezentovaný ako dátovy strom, vďaka čomu je každá zmena rýchla. Avšak po tejto zmene, zmenené elementy a ich potomkovia musia byť nanovo vyrenderované, aby nastal aj priamo update \acrshort{ui} danej aplikácie. Proces renderovania je to, čo spôsobuje nezanedbateľné spomalenie výkonu, ktoré je navyše priamo úmerné so zväčšujúcim sa počtom \acrshort{ui} komponentov, ktoré treba nanovo vyrenderovať. 
+Ďalším dôležitým konceptom v React Native, je tzv. Virtual DOM. DOM je vo všeobecnosti skratka pre Document Object Model (inak nazývaný aj real DOM), čo je programové rozhranie pre \acrshort{html} a \acrshort{xml} dokumenty. DOM reprezentuje dokument ako skupinu uzlov (tzv. "nodes") a objektov. To umožňuje jazykom ako napríklad JavaScript modifikovať dané uzly a tým aj celý dokument. DOM je reprezentovaný ako dátový strom, vďaka čomu je každá zmena rýchla. Avšak po tejto zmene, elementy a ich potomkovia musia byť nanovo vyrenderované, aby nastala zmena aj priamo v \acrshort{ui} danej aplikácie. Proces renderovania je to, čo spôsobuje nezanedbateľné spomalenie výkonu, ktoré je navyše priamo úmerné so zväčšujúcim sa počtom \acrshort{ui} komponentov.
 
-Tu prichádza na scénu Virtual DOM a dosahuje podstatne lepšie výkonnostné výsledky ako real DOM. Virtual DOM je iba virtuálne znázornenie DOM. Vždy, keď sa zmení stav aplikácie, namiesto real DOM sa aktualizuje virtual DOM. Keď je do \acrshort{ui} pridaný nový element, vytvorí sa virtual DOM (reprezentovaný ako strom). Akonáhle sa zmení stav ktoréhokoľvek elementu, vytvorí sa nový virtual DOM, prebehne proces porovnania (nazývaný "diffing") aktuálnej verzie a prechádzajúcej verzie vritual DOM. Potom sa vypočíta najlepší možný spôsob ako tieto zmeny premietnuť do real DOM. Akonáhle React vie, ktoré elementy vo virtual DOM boli zmenené, zaktualizuje len dané elementy v real DOM. Vďaka tomu je výkon neporovnateľne lepší v porovnaní s priamou manipuláciou s DOM. \cite{rn4}
+Tu prichádza na scénu Virtual DOM, ktorý dosahuje podstatne lepšie výsledky ako real DOM. Virtual DOM je iba virtuálne znázornenie DOM. Vždy, keď sa zmení stav aplikácie, namiesto real DOM sa aktualizuje virtual DOM. Akonáhle sa zmení stav ktoréhokoľvek elementu alebo sa vytvorí nový element, vytvorí sa spolu s ním aj nový virtual DOM. Následne prebehne proces porovnania (nazývaný "diffing") aktuálnej verzie a prechádzajúcej verzie vritual DOM. Potom sa vypočíta najlepší možný spôsob ako tieto zmeny premietnuť do real DOM. Akonáhle React vie, ktoré elementy vo virtual DOM boli zmenené, zaktualizuje len dané elementy v real DOM. Vďaka tomu je výkon neporovnateľne lepší v porovnaní s priamou manipuláciou s DOM. \cite{rn4}
 
 \begin{figure}[!htbp]
   \centering  
   \def\stackalignment{c}
 	\stackunder{\includegraphics[width=12cm]{img/dom.png}}%
            {\scriptsize%
-            Zdroj: \url{https://programmingwithmosh.com/react/react-virtual-dom-explained/}}
+            Zdroj: \cite{oreily}}
 	\caption{Virtual DOM vs. real DOM}  
   \label{domImg}
 \end{figure}
-Na \hyperref[domImg]{obrázku \ref{domImg}} vidíme červené kruhy, ktoré znázorňujú zmenené uzly. Tieto uzly reprezentujú konkrétne \acrshort{ui} elementy, ktorých stav sa zmenil. Následne je vypočítaný rozdiel medzi aktuálnou a predchádzajúcou verziou virtual DOM stromu, pričom celý podstrom rodiča je nanovo prerenderovaný a tým poskytne aktualizáciu \acrshort{ui}. Aktualizácie real DOM sa posielajú hromadne, namiesto odosielania aktualizácií pre každú jednu zmenu stavu.
-
-Spôsob akým virtual DOM využíva samotný React Native je vo veľkej miere podobný. Hlavnou odlišnosťou je, že sa namiesto webových komponentov renderujú natívne komponenty, tým pádom sa nepoužívajú webové technológie. \\
+Na \hyperref[domImg]{obrázku \ref{domImg}} vidíme červené kruhy, ktoré znázorňujú zmenené uzly. Tieto uzly reprezentujú konkrétne \acrshort{ui} elementy, ktoré zmenili svoj stav. Na hornej časti obrázku vidíme, že je najprv vypočítaný rozdiel medzi aktuálnou a predchádzajúcou verziou virtual DOM stromu, pričom celý podstrom rodiča je nanovo prerenderovaný a tým poskytne aktualizáciu \acrshort{ui}. Aktualizácie real DOM sa posielajú hromadne, namiesto odosielania aktualizácií pre každú jednu zmenu stavu, čo môžeme vidieť na dolnej časti obrázku. \\
 
 \subsubsection{Základné komponenty}
-Kľúčovým prvkom každej React Native aplikácie sú komponenty. Každý komponent má inú úlohu, no dokopy tvoria celok - samotnú aplikáciu. Z hľadiska koncepcie môžeme povedať, že komponenty sú podobné JavaScript funkciám. Vedia prijímať vstupy (nazývané ``props''), s ktorými potom umožňujú pracovať vo vnútri komponentu a vracajú elementy ktoré popisujú čo sa má zobraziť na obrazovke. \cite{react}
+Kľúčovým prvkom každej React Native aplikácie sú komponenty. Každý komponent má inú úlohu, no dokopy tvoria celok. Z hľadiska koncepcie môžeme povedať, že komponenty sú podobné JavaScript funkciám. Vedia prijímať vstupy (nazývané ``props''), s ktorými potom umožňujú pracovať vo vnútri komponentu a vracajú elementy, ktoré popisujú, čo sa má zobraziť na obrazovke. \cite{react}
 
-V React Native existujú dva hlavné typy komponentov, ktoré tvoria aplikáciu. Sú štruktúrované rovnako, ako v bežnej webovej aplikácii vytvorenej pomocou Reactu.
+V React Native existujú dva hlavné typy komponentov, ktoré tvoria aplikáciu.
 \begin{itemize}[leftmargin=*]
 {\bf \item Class komponenty} \newline
 Sú to triedy rozširujúce základnú triedu z Reactu s názvom Component. Majú prístup k lifecycle metódam Reactu ako napríklad render či state/props funkcionalite od rodičovskej triedy. V súčasnosti sú menej používané kvôli tomu, že sú komplikovanejšie ako functional komponenty. Aj keď stále existujú prípady, v ktorých je ich syntax potrebná, vo všeobecnosti sa pri vytváraní nového komponentu viac používa syntax functional kompononetu. Vo \hyperref[classComponent]{výpise \ref{classComponent}} máme uvedený aj jednoduchý príklad class komponentu.  \\
@@ -203,30 +201,30 @@ Sú to triedy rozširujúce základnú triedu z Reactu s názvom Component. Maj�
 import React, { Component } from 'react';
 import { Text } from 'react-native';
 
-class Cat extends Component {
+class OurNewComponent extends Component {
   render() {
     return (
-      <Text>Hello, I am your cat!</Text>
+      <Text>This is our new class component</Text>
     );
   }
 }
 
-export default Cat;
+export default OurNewComponent;
 \end{lstlisting}
 {\bf \item Functional komponenty} \newline
-Sú najjednoduchší spôsob vytvorenia komponentu. Ich deklarácia je v podstate rovnaká ako pri obyčajnej JavaScript funkcii. V minulosti sa za ich nevýhodu oproti class komponentom považovalo to, že neumožňovali správu stavov (states) a nemali prístup k lifecycle metódam ktoré React Native poskytuje. To sa zmenilo až po vydaní verzie 16.8.0 v roku 2019, v ktorej vývojári pridali Hooks, čím tento problém zanikol. \cite{hooks} Odvtedy sa ich popularita ešte zvýšila a stali sa novým štandardom. Na \hyperref[funcComponent]{výpise \ref{funcComponent}} môžeme vidieť, že je jednoduchšie ich udržiavať ``light weight'' a kód je pri nich čitateľnejší, ako pri class komponentoch. \\
+Sú jednoduchší typ komponentu. Ich deklarácia je v podstate rovnaká ako pri obyčajnej JavaScript funkcii. V minulosti sa za ich nevýhodu oproti class komponentom považovalo to, že neumožňovali správu stavov (states) a nemali prístup k lifecycle metódam ktoré React Native poskytuje. To sa zmenilo až po vydaní verzie 16.8.0 v roku 2019, v ktorej vývojári pridali Hooks, čím tento problém zanikol. \cite{hooks} Odvtedy sa ich popularita ešte zvýšila a stali sa novým štandardom. Na \hyperref[funcComponent]{výpise \ref{funcComponent}} môžeme vidieť, že kód je celkovo jednoduchší a čitateľnejší, ako pri class komponentoch. \\
 
 \begin{lstlisting}[caption={Príklad function komponentu}, label={funcComponent}]
 import React from 'react';
 import { Text } from 'react-native';
 
-const Cat = () => {
+const OurNewComponent = () => {
   return (
-    <Text>Hello, I am your cat!</Text>
+    <Text>This is our new functional component</Text>
   );
 }
 
-export default Cat;
+export default OurNewComponent;
 \end{lstlisting}
 
 \end{itemize}
@@ -237,17 +235,17 @@ React Native navyše poskytuje aj sadu predpripravených hotových natívnych ko
 Props a State sú dva typy dát, pomocou ktorých vieme pracovať s komponentami.
 \begin{itemize}[leftmargin=*]
 {\bf \item Props} \newline
-Props (z anglického slova ``properties'') je obdoba argumentov pri klasických funkciách v JavaScripte alebo atribútov pri HTML. Komponenty prijímajú props od rodičovského komponentu. Ich dôležitou vlastnosťou je, že sú tzv. ``immutable'' tj. nemenné vo vnútri komponentu. V Reacte a v React Native smerujú dáta jedným smerom - od rodičovských komponentov k detským. Celý koncept props je založený na tom, že si viete vytvoriť jeden komponent, ktorý je možné použiť na viacerých miestach v aplikácii. Rodičovské komponenty potom vedia zavolať váš vytvorený komponent, pričom na rôznych miestach vie mať rozličné props. Props v zásade pomáhajú písať znovu použiteľný kód. \cite{props}
+Props (z anglického slova ``properties'') je obdoba argumentov pri klasických funkciách v JavaScripte alebo atribútov pri HTML. Komponenty prijímajú props od rodičovského komponentu. Ich dôležitou vlastnosťou je, že sú tzv. ``immutable'' tj. nemenné vo vnútri komponentu. V Reacte a v React Native smerujú dáta jedným smerom - od rodičovských komponentov k detským. Celý koncept props je založený na tom, že si viete vytvoriť jeden komponent, ktorý je možné použiť na viacerých miestach v aplikácii. Rodičovské komponenty potom vedia zavolať vami vytvorený komponent, pričom na rôznych miestach vie mať rozličné props. Props v zásade pomáhajú písať znovu použiteľný kód. \cite{props}
 {\bf \item State} \newline
-State pracuje odlišne v porovnaní s props. Je to interná vlastnosť komponentu, ktorá pomáha v rámci komponentu sledovať určité informácie. Použitím ``setState'' sa daný komponent aj jeho detské komponenty nanovo vyrenderujú, vďaka čomu sa nemusí programátor zaoberať implementáciou event handlerov ako v iných jazykoch. State sa používa v situáciách, keď sa menia dáta v rámci komponentu. Dobrým príkladom je napríklad interakcia používateľa s komponentom, pri kliknutí na tlačidlo alebo zaškrtnutí checkboxu. Napríklad pri vypĺňaní formuláru má každý z textových inputov svoj vlastný state. Ak vyplníme daný input, automaticky sa mení jeho state, čo spôsobuje prerenderovanie celého komponentu a všetkých jeho detských komponentov. \cite{props} \\
+State pracuje odlišne v porovnaní s props. Je to interná vlastnosť komponentu, ktorá pomáha sledovať určité informácie. Použitím ``setState'' sa daný komponent a jeho detské komponenty nanovo vyrenderujú, vďaka čomu sa nemusí programátor zaoberať implementáciou event handlerov ako v iných jazykoch. State sa používa v situáciách, keď sa menia dáta v rámci komponentu. Dobrým príkladom je napríklad interakcia používateľa s komponentom, pri kliknutí na tlačidlo alebo zaškrtnutí checkboxu. Napríklad pri vypĺňaní formuláru má každý z textových inputov svoj vlastný state. Ak vyplníme daný input, automaticky sa mení jeho state, čo spôsobuje prerenderovanie celého komponentu a všetkých jeho detských komponentov. \cite{props} \\
 \end{itemize} 
 \subsubsection{Hooks}
-Hooks boli predstavené vo verzii 16.8.0 v roku 2019. Ich hlavnou úlohou je umožniť používať state a lifecycle metódy vo functional komponentoch, čo predtým bolo možné iba vytvorením class komponentov (v nich Hooks nie sú použiteľné). Ich uvedenie výrazne zvýhodnilo používanie functional komponentov oproti class komponentom. Tak isto ako pri komponentoch, aj tu React Native umožňuje využiť predpripravené Hooks priamo od vývojárov. Najčastejšie používané sú useEffect a useState. V prípade potreby je možné si vytvoriť aj vlastný hook tak, aby spĺňal požadovanú funkcionalitu. \cite{hooks} \\
+Ich hlavnou úlohou je umožniť používať state a lifecycle metódy vo functional komponentoch, čo predtým bolo možné iba vytvorením class komponentov. Ich uvedenie výrazne zvýhodnilo používanie functional komponentov oproti class komponentom. Tak isto ako pri komponentoch, aj tu React Native umožňuje využiť predpripravené Hooks priamo od vývojárov. Najčastejšie používané sú useEffect a useState. V prípade potreby je možné si vytvoriť aj vlastný hook tak, aby spĺňal požadovanú funkcionalitu. \cite{hooks} \\
 \subsection{Expo alebo React Native CLI ?}
 Predtým ako sa programátor pustí do vývoja aplikácie pomocou React Native, ho čaká rozhodnutie či použiť pomocný framework Expo, alebo vstavanú funkcionalitu React Native CLI. Nato aby sme mohli vytvorenú aplikáciu vôbec spustiť, potrebujeme jednu z týchto technológii. \\
 
 \subsubsection{Expo}
-Framework používaný pri vytváraní React Native aplikácií. Je to balík nástrojov a služieb vytvorených pre React Native, ktoré pomáhajú pri vývoji aplikácie. \cite{expo} \newline
+Framework používaný pri vytváraní React Native aplikácií. Je to balík nástrojov a služieb vytvorených pre React Native, ktoré zjednodušujú vývoj a deployment aplikácie na Android a iOS. \cite{expo} \newline
 
 {\bf Výhody}
 \begin{itemize}
@@ -262,7 +260,7 @@ Framework používaný pri vytváraní React Native aplikácií. Je to balík n�
 \begin{itemize}
 {\item Ďalšia vrstva abstrakcie.} 
 {\item Neumožňuje zasahovať do natívneho kódu.}
-{\item Niesu k dispozícií všetky iOS a Android \acrshort{api}s.} \cite{expo}
+{\item Nie sú k dispozícií všetky iOS a Android \acrshort{api}s.} \cite{expo}
 \end{itemize}
 \bigskip
 
@@ -287,27 +285,27 @@ Vstavaný nástroj v React Native, ktorý pomáha spustiť aplikáciu. \newline
 V našom prípade sme si vybrali pracovať s Expom, keďže práca s ním je jednoduchšia a priamočiarejšia a vzhľadom na typ a vlastnosti aplikácie, nám jeho funkcionalita plne postačuje. \\
 
 \subsection{Node.js}
-Node.js je open-source, cross-platformové, back-endové runtime prostredie JavaScriptu, ktoré beží na Chrome V8 JavaScript engine a vykonáva kód JavaScript mimo webového prehliadača. \cite{nodejswiki} Tento engine prekladá JavaScriptový kód do rýchlejšieho strojového kódu. Strojový kód je nízkoúrovňový kód, ktorý počítač dokáže prečítať bez potreby ďalšej interpretácie. Vznik node.js bol logickým krokom po tom, ako vývojári JavaScriptu rozšírili použiteľnosť jazyka z čisto skriptovacieho, ktorý bolo možné používať a spúšťať iba v prehliadači, na jazyk ktorý umožňuje vytvoriť samostatnú aplikáciu spustiteľnú aj mimo prehliadača. 
+Ako technológiu pre backend sme zvolili Node.js, čo je open-source, cross-platformové, back-endové runtime prostredie JavaScriptu, ktoré beží na Chrome V8 JavaScript engine a vykonáva kód JavaScript mimo webového prehliadača. \cite{nodejswiki} Tento engine prekladá JavaScriptový kód do rýchlejšieho strojového kódu. Vznik Node.js bol logickým krokom po tom, ako vývojári JavaScriptu rozšírili použiteľnosť jazyka z čisto skriptovacieho, ktorý bolo možné používať a spúšťať iba v prehliadači, na jazyk ktorý umožňuje vytvoriť samostatnú aplikáciu spustiteľnú aj mimo prehliadača. 
 
-Nesporným prínosom node.js je, že využíva tzv. event-driven non-blocking I/O model, ktorý ho robí efektívnym. I/O alebo aj input/output, môže byť čokoľvek od čítania resp. zapisovania lokálnych súborov, až po vytváranie \acrshort{http} requestov na \acrshort{api}. Non - blocking znamená, že napríklad pri requeste na vytiahnutie údajov dvoch používateľov z databázy, daný request neblokuje vykonávanie ďalšieho kódu počas čakania na odpoveď. Na \hyperref[nodejsImg]{ obrázku \ref{nodejsImg}} nižšie môžeme vidieť porovnanie blocking (vľavo) a non blocking modelu (vpravo) na spomenutom príklade s databázou. \cite{nodejs} \\
+Nesporným prínosom node.js je, že využíva tzv. event-driven non-blocking I/O model, ktorý ho robí efektívnym. I/O alebo aj input/output, môže byť čokoľvek od čítania resp. zapisovania lokálnych súborov, až po vytváranie \acrshort{http} requestov na \acrshort{api}. Non - blocking znamená, že aktuálne vykonávaný request neblokuje spustenie ďalšieho requestu počas čakania na odpoveď. Na \hyperref[nodejsImg]{ obrázku \ref{nodejsImg}} nižšie môžeme vidieť porovnanie blocking (vľavo) a non blocking modelu (vpravo) na príklade s databázou. \cite{nodejs} \\
 
 \begin{figure}[!htbp]
   \centering  
   \def\stackalignment{c}
 	\stackunder{\includegraphics[width=16cm]{img/nodejs.png}}%
            {\scriptsize%
-            Zdroj: \url{https://www.freecodecamp.org/news/what-exactly-is-node-js-ae36e97449f5/}}
+            Zdroj: \cite{nodejs}}
 	\caption{Porovnanie blocking a non-blocking modelu}  
   \label{nodejsImg}
 \end{figure}
 
 \subsubsection{Yarn}
-Je package manager pre JavaScript, ktorý pomáha riadiť dodatočne doinštalované knižnice a rôzne iné dependencies v našom projekte. Keďže v súčasnej dobe sa pri programovaní využíva veľké množstvo knižníc a dependencies, aby sa zjednodušila práca programátora a nemusel istú funkcionalitu programovať nanovo, je odporúčané package manager používať.
+Je package manager pre JavaScript, ktorý pomáha riadiť dodatočne doinštalované knižnice a rôzne iné dependencies v našom projekte. Keďže v súčasnej dobe sa pri programovaní využíva veľké množstvo knižníc a závislosti, aby sa zjednodušila práca programátora a nemusel istú funkcionalitu programovať nanovo, je odporúčané package manager používať.
 
 Node.js prichádza s predinštalovaným package managerom npm. Napriek tomu sme sa rozhodli použiť yarn, ktorý bol vytvorený Facebookom, tak isto ako React Native a preto práca s ním bola konzistentnejšia a bez väčších problémov na rozdiel od npm. \\
 
 \subsubsection{Axios}
-Axios je knižnica pre JavaScript, ktorá sa používa na vytváranie \acrshort{http} requestov z node.js alebo XMLHttpRequests z prehliadača. Podporuje aj \acrshort{es6} promise API, pričom ešte viac uľahčuje celý proces okolo requestov tým, že ešte viac zlepšila dobre fungujúcu fetch() funckiu z JS a vylepšila error handling. \cite{axios} \\
+Axios je knižnica pre JavaScript, ktorá sa používa na vytváranie \acrshort{http} requestov z Node.js alebo XML HttpRequests z prehliadača. Podporuje aj \acrshort{es6} promise \acrshort{api}, pričom ešte viac uľahčuje celý proces okolo requestov tým, že ešte viac zlepšila dobre fungujúcu fetch() funckiu z JS a vylepšila error handling. \cite{axios} \\
 
 \subsection{The Movie Database}
  \acrfull{tmdb}, je databáza filmov a TV seriálov, ktorá bola vytvorená v roku 2008 úzkou komunitou ľudí, ktorá sa neskôr postupne rozrástla. Dnes je TMDb používaná vyše 400 000 developermi a firmami. \cite{tmdb} Úspech im priniesla hlavne ich dostupná \acrshort{api}, ktorá je zadarmo a ponúka širokú škálu queries, pomocou ktorých je možné získať podrobné informácie o filmových tituloch. Ich veľkou prednosťou je aj množstvo dostupných titulných plagátov k filmom vo vysokej kvalite. Jedinou jej nevýhodou je, že popularitou zatiaľ nedosahuje úroveň najväčšej databázy na svete \acrshort{imdb} a pri niektorých filmoch nie sú ich hodnotenia kredibilné. \\
@@ -319,26 +317,26 @@ Firebase je platforma vyvinutá spoločnosťou Google, ktorá pomáha vytvárať
 \label{sec:firebaseauth}
 Poskytuje backendové služby, jednoducho použiteľné \acrshort{sdk} a predpripravené \acrshort{ui} knižnice na autentifikáciu používateľov v aplikácii. Podporuje autentifikáciu pomocou hesla, telefónneho čísla, Googlu, Facebooku a Twitteru. Je úzko integrovaná s ostatnými službami Firebase a využíva  štandardy ako OAuth 2.0 a OpenID Connect, takže ju možno ľahko integrovať do vlastného backendu. \cite{auth} Okrem autentifikácie umožňuje aj registráciu a správu zaregistrovaných používateľov. V našej aplikácií sme si zvolili použiť autentifikáciu pomocou emailu a hesla. \\
 
-\subsubsection{Cloud firestore}
+\subsubsection{Cloud Firestore}
 \label{sec:firestore}
-Cloud Firestore je škálovateľná NoSQL cloudová databáza, pre vývoj mobilných a webových aplikácii. Udržuje dáta synchronizované medzi klientskými aplikáciami prostredníctvom listenerov v reálnom čase. Ponúka bezproblémovú integráciu s ostatnými produktami Firebase a Google Cloud vrátane cloudových funkcií. 
+Je škálovateľná NoSQL cloudová databáza, pre vývoj mobilných a webových aplikácii. Udržuje dáta synchronizované medzi klientskými aplikáciami prostredníctvom listenerov v reálnom čase.
 
-Vo firestore dátovom modeli \hyperref[firestore]{(pozri obr. \ref{firestore})}, sa dáta ukladajú do tzv. dokumentov, ktoré obsahujú polia (fields) namapované na konkrétne hodnoty. Tieto dokumenty sú ukladané do kolekcií, ktoré slúžia ako kontainer pre viacero dokumentov. Dokumenty podporujú mnoho rôznych dátových typov, od jednoduchých ako sú napríklad reťazce alebo čísla, až po komplexnejšie ako mapy, polia, alebo komplexné vnorené objekty. Vytvoriť komplexnú databázu umožňuje vytváranie subkolekcií v rámci dokumentu (tj. kolekcie obsahujú dokumenty, ktoré obsahujú kolekcie a tie obsahujú ďalšie dokumenty atď.). \cite{firestoredoc}
+Vo Firestore dátovom modeli \hyperref[firestore]{(pozri obr. \ref{firestore})}, sa dáta ukladajú do tzv. dokumentov, ktoré obsahujú polia (fields) namapované na konkrétne hodnoty. Tieto dokumenty sú ukladané do kolekcií, ktoré slúžia ako kontainer pre viacero dokumentov. Dokumenty podporujú mnoho rôznych dátových typov, od jednoduchých ako sú napríklad reťazce alebo čísla, až po komplexnejšie ako mapy, polia, alebo vnorené objekty. \cite{firestoredoc}
 
-Friebase ponúka aj druhý typ databázy, Firebase Realtime Database, čo je tiež NoSQL cloudová databáza. Avšak, oproti firestore ponúka jednoduchší dátový model, v ktorom sa dáta ukladajú iba vo formáte \acrshort{json}, čo je vhodné iba pri jednoduchšej dátovej štruktúre. Taktiež nepodporuje používanie zložitejších queries. Firestore bol teda v našom prípade lepšou voľbou v oboch prípadoch. \\
+Friebase ponúka aj druhý typ databázy, Firebase Realtime Database, čo je tiež NoSQL cloudová databáza. Oproti Firestore ponúka jednoduchší dátový model, v ktorom sa dáta ukladajú iba vo formáte \acrshort{json}, čo je vhodné iba pri jednoduchšej dátovej štruktúre. Taktiež nepodporuje používanie zložitejších queries. Firestore bol teda v našom prípade lepšou voľbou. \\
 
 \begin{figure}[!htbp]
   \centering  
   \def\stackalignment{c}
 	\stackunder{\includegraphics[width=15cm]{img/firestore.png}}%
            {\scriptsize%
-            Zdroj: \url{https://waelyasmina.com/firebase-cloud-firestore-tutorial-web/}}
+            Zdroj: \cite{firestoreimg}}
 	\caption{Znázornenie dátového modelu Cloud Firestore} 
   \label{firestore}
 \end{figure}
 
 
-\section{Analytická a návrhová časť}
+\section{Analytická a návrh systému}
 \subsection{Analýza problému}
 V dnešnej dobe, kedy je ponuka produktov na trhu veľmi veľká a pestrá, býva častým problémom používateľov nájsť práve tie produkty o ktoré majú reálne záujem a vyhovujú ich kritériám. Práve tento problém bol motiváciou pre vznik odporúčacích systémov \hyperref[sec:odporucacie systemy]{(kapitola 1.1)}, ktoré sa dnes vo veľkej miere využívajú. 
 
@@ -349,7 +347,7 @@ To nám vnuklo myšlienku, na tému tejto bakalárskej práce s cieľom zjednodu
 \subsection{Existujúce riešenia problému}
 Pri analýze súčasného stavu sme sa pozreli na existujúce riešenia, venujúce sa danej problematike. Je dôležité poznamenať, že v čase zadania práce nebola dostupná aplikácia, ktorá by obsahovala podobnú funkcionalitu a bola by dostupná na oba spomínané operačné systémy. 
 \subsubsection{Android OS}
-Na OS Android bola dostupná len 1 aplikácia vytvorená v roku 2019, avšak už dlhšie nepodporovaná vývojárom. Aplikácia s názvom MovieMatch má však viacero nevýhod oproti riešeniu, ktoré sme navrhli my. Základným prvkom tejto aplikácie je skupina, kým v žiadnej nie ste, nemáte možnosť si prezerať a hodnotiť filmové tituly. Po nainštalovaní a spustení, vygeneruje aplikácia kód, ktorý treba poslať iným používateľom, aby sa mohli pripojiť do jeho skupiny. Tak isto sa používateľ vie pripojiť do inej skupiny pomocou kódu danej skupiny. Toto riešenie spôsobuje, že používateľ je závislý od iných používateľov a bez nich je aplikácia nepoužiteľná. Nevýhodou je aj spôsob implementácie, vo forme webovej aplikácie, ktorá sa otvára priamo v prehliadači. To vzhľadom na súčasné štandardy vývoja mobilných aplikácií nie je najvhodnejšie riešenie a \acrshort{ui} oproti natívnym a hybridným (resp. cross platformovým) aplikáciám pôsobí zastaralo. Detailnému porovnaniu typov mobilných aplikácií sme sa venovali v \hyperref[sec:typy aplikacii]{kapitole 1.2.}
+Na OS Android bola dostupná len jedna aplikácia vytvorená v roku 2019, avšak už dlhšie nepodporovaná vývojárom. Aplikácia s názvom MovieMatch má však viacero nevýhod oproti riešeniu, ktoré sme navrhli my. Základným prvkom tejto aplikácie je skupina, kým v žiadnej nie ste, nemáte možnosť si prezerať a hodnotiť filmové tituly. Po nainštalovaní a spustení, vygeneruje aplikácia kód, ktorý treba poslať iným používateľom, aby sa mohli pripojiť do jeho skupiny. Tak isto sa používateľ vie pripojiť do inej skupiny pomocou kódu danej skupiny. Toto riešenie spôsobuje, že používateľ je závislý od iných používateľov a bez nich je aplikácia nepoužiteľná. Nevýhodou je aj spôsob implementácie, vo forme webovej aplikácie, ktorá sa otvára priamo v prehliadači. To vzhľadom na súčasné štandardy vývoja mobilných aplikácií nie je najvhodnejšie riešenie a \acrshort{ui} oproti natívnym a hybridným (resp. cross platformovým) aplikáciám pôsobí zastaralo. Detailnému porovnaniu typov mobilných aplikácií sme sa venovali v \hyperref[sec:typy aplikacii]{kapitole 1.2.}
 \subsubsection{iOS}
 V čase zadania tejto bakalárskej práce nebola podobná aplikácia bežiaca na operačnom systéme iOS k dispozícií. To sa neskôr zmenilo, keď v novembri 2020 vyšla aplikácia Movie Match. Funkcionalitou a vzhľadom je na tom omnoho lepšie ako spomínaná Android aplikácia. Z jej používania však nie je jasné, či pri generovaní filmov využíva nejaký druh odporúčacieho algoritmu, alebo generuje filmy každému používateľovi rovnako. To ma za následok, že  používateľ nenadobudne pocit, že sa aplikácia časom prispôsobuje jeho preferenciám. 
 
@@ -357,7 +355,7 @@ V čase zadania tejto bakalárskej práce nebola podobná aplikácia bežiaca na
 \subsection{Návrh riešenia}
 Cieľom tejto bakalárskej práce bolo navrhnúť a implementovať mobilnú aplikáciu, ktorá bude slúžiť ako pomocník pri spoločnom výbere filmu dvoch používateľov. Na základe ich osobného profilu preferencií jednotlivých atribútov filmov, sa im vygenerujú odporúčané filmy, ktoré budú môcť obaja hodnotiť a následne si pozrieť zhodu. Používateľ bude vedieť hodnotiť filmy aj samostatne bez nutnosti byť prepojený s iným používateľom. Hodnotenie filmov bude vo forme binárneho hodnotenia (like/dislike) a implementované pomocou známeho swipeovania na obrazovke doprava a doľava. Na základe týchto hodnotení sa mu budú meniť preferencie a následne aj odporúčané tituly. Celý tento princíp obsahuje prvky content based filteringu, čo je jedna z metód odporúčacích systémov \hyperref[sec:contentbased]{(kapitola 1.1.6).}
 
-V rámci implementácie, sme sa rozhodli, že by bolo vhodné, aby fungovala pre oba populárne operačné systémy (Android aj iOS), vďaka čomu používatelia nebudú obmedzovaní a viazaní na jeden operačný systém. Zvolením frameworku React Native sme teda zabezpečili vytvorenie cross platformovej aplikácie. Sústrediť sa budeme prioritne na OS Android, avšak po malých dodatočných úpravách, by v budúcnosti nemal byť problém aplikáciu spustiť aj na iOS. Autentifikácia používateľa je formou emailu a hesla implementovaná pomocou Firebase authentication. Ako úložisko dát nám slúži cloudová NoSQL databáza Firestore. Ako zdroj filmových dát sme zvolili databázu TMDb, pričom na prácu s dátami sme využívali aj ich \acrshort{api}. 
+V rámci implementácie, sme sa rozhodli, aby aplikácia fungovala pre oba populárne operačné systémy (Android aj iOS), vďaka čomu používatelia nebudú obmedzovaní a viazaní na jeden operačný systém. Zvolením frameworku React Native sme teda zabezpečili vytvorenie cross platformovej aplikácie. Sústredili sme sa prioritne na OS Android, avšak po malých dodatočných úpravách, by v budúcnosti nemal byť problém aplikáciu spustiť aj na iOS. Autentifikácia používateľa je formou emailu a hesla implementovaná pomocou Firebase authentication. Ako úložisko dát nám slúži cloudová NoSQL databáza Firestore. Ako zdroj filmových dát sme zvolili databázu TMDb, pričom na prácu s dátami sme využívali ich \acrshort{api}. 
 \vspace{55mm} %5mm vertical space
 
 \begin{figure}[hbt!]
@@ -383,7 +381,7 @@ V ďalšej časti práce je návrh detailnejšie vizualizovaný pomocou vybraný
 	\label{usecase1}
 \end{figure}
 
-Na \hyperref[usecase1]{obrázku 8} môžeme vidieť, že aplikácia rozlišuje 3 základné role a to neregistrovaný používateľ a registrovaný (treba opraviť diagram) resp. prihlásený používateľ. Neregistrovaný používateľ sa vie zaregistrovať pomocou zvolenej prezývky, emailu a hesla. Následne ho aplikácia rovno prihlási pričom mu zobrazí krátky návod na oboznámenie sa s aplikáciou. Na jeho konci je z populárnych titulov vygenerovaný úvodný dotazník, v ktorom je požívateľ vyzvaný, aby pomocou swipeovania vybral aspoň 15 filmových titulov ktoré sa mu páčia. To zabezpečí, že sa profil preferencií nainicializuje. Registrovaný používateľ sa vie prihlásiť pomocou emailu a hesla.
+Na \hyperref[usecase1]{obrázku \ref{usecase1}} môžeme vidieť, že aplikácia rozlišuje 3 základné role a to neregistrovaný používateľ a registrovaný resp. prihlásený používateľ. Neregistrovaný používateľ sa vie zaregistrovať pomocou zvolenej prezývky, emailu a hesla. Následne ho aplikácia rovno prihlási pričom mu zobrazí krátky návod na oboznámenie sa s aplikáciou. Na jeho konci je z populárnych titulov vygenerovaný úvodný dotazník, v ktorom je požívateľ vyzvaný, aby pomocou swipeovania vybral aspoň 15 filmových titulov ktoré sa mu páčia. To zabezpečí, že sa profil preferencií inicializuje. Registrovaný používateľ sa vie prihlásiť pomocou emailu a hesla.
 \pagebreak
 
 \begin{figure}[hbt!]
@@ -394,7 +392,7 @@ Na \hyperref[usecase1]{obrázku 8} môžeme vidieť, že aplikácia rozlišuje 3
 	\caption{Diagram prípadov použitia 2}
   \label{usecase2}
 \end{figure}
-Na \hyperref[usecase2]{obrázku 9} máme detailnejší popis aplikácie po prihlásení používateľa. Prihlásený používateľ má možnosť hodnotiť filmy, prípadne si pozrieť detail aktuálne zobrazeného filmu. Tak isto si vie zobraziť filmy, ktoré sa mu páčili. Vie si tiež zobraziť svoj profil so základnými informáciami o jeho účte a odhlásiť sa z aplikácie. Po prihlásení môže používateľ nadobudnúť dve ďalšie podrole.
+Na \hyperref[usecase2]{obrázku \ref{usecase2}} máme detailnejší popis aplikácie po prihlásení používateľa. Prihlásený používateľ má možnosť hodnotiť filmy, prípadne si pozrieť detail aktuálne zobrazeného filmu. Tak isto si vie zobraziť svoju knižnicu, v ktorej má ohodnotené filmy. Vie si tiež zobraziť svoj profil so základnými informáciami o jeho účte a odhlásiť sa z aplikácie. Po prihlásení môže používateľ nadobudnúť dve ďalšie podrole. 
 
 Nespárovaný používateľ vie poslať žiadosť o spárovanie inému používateľovi, ktorú v prípade neobdržania odpovede vie kedykoľvek zrušiť. Vďaka tomu sa vyhne situácií, kedy by sa zasekol v stave čakania na odpoveď. Po obdržaní takejto žiadosti, vie túto žiadosť odmietnuť alebo prijať. Prijatím sa automaticky spáruje s druhým používateľom a na základe ich profilov preferencií sa im vygenerujú spoločné odporúčané filmové tituly, ktoré vedia obaja používatelia hodnotiť. 
 
@@ -430,11 +428,8 @@ Ako vývojové prostredie sme si vybrali Visual Studio Code. Výber vychádzal h
 {\item Posledným krokom k úspešnému spusteniu aplikácie je nainštalovanie emulátora, ktorý bude slúžiť ako virtuálne prostredie pre spustenie našej aplikácie počas programovania. Expo CLI síce podporuje aj spustenie na reálnom zariadení, emulátor je však pohodlnejšie riešenie. V našom prípade, keďže sme aplikáciu programovali primárne pre Android OS, nám nato poslúži \href{https://developer.android.com/studio}{Android Studio}, ktoré túto funkcionalitu obsahuje.}
 \end{itemize}
 
-V tomto bode by sme mali byť schopný inicializovať aplikáciu príkazom \textit{expo init nazovProjektu}.
-Treba dodať, že občas sa počas inštalácie Expo CLI cez npm môže vyskytnúť chyba, kedy sa nepridá expo do systému ako environment variable. Následne po zadaní príkazu, príkazový riadok hlási chybu, že nepozná daný príkaz. To sa stalo aj v našom prípade. Riešením je buď ju pridať manuálne (čo nemusí vždy pomôcť), alebo preinštalovať Node.js a nainštalovať Expo CLI pomocou npm znova. Po preinštalovaní už príkaz funguje, vďaka čomu sme nainicializovali a vytvorili našu aplikáciu. 
-
 \subsubsection{Firebase}
-Na využitie Firebase bolo potrebné sa prihlásiť, založiť si nový projekt a napojiť ho na našu aplikáciu. Po zadaní povinných údajov ako názov aplikácie a názov android package, sa nám vygeneruje objekt s konfiguračnými údajmi. Ten si skopírujeme a vložíme do novovytvoreného súboru v našej aplikácií s názvom keys.js. Tam budeme uchovávať všetky potrebné citlivé údaje ako napríklad \acrshort{api} kľúče a podobne.
+Na využitie Firebase bolo potrebné sa prihlásiť, založiť si nový projekt a napojiť ho na našu aplikáciu. Po zadaní povinných údajov, sa nám vygeneruje objekt s konfiguračnými údajmi. Ten si skopírujeme a vložíme do novovytvoreného súboru v našej aplikácií s názvom keys.js. Tam budeme uchovávať všetky potrebné citlivé údaje ako napríklad \acrshort{api} kľúče a podobne.
 
 Posledným krokom inštalácie je pridanie firebase cez yarn príkazom \textit{yarn add firebase} a následné pridanie inicializácie v hlavnom súbore App.js pridaním funkcie \textit{firebase.initializeApp(config)}, kde argumentom je spomínaný konfiguračný objekt.
 \subsubsection{Firebase authentication}
@@ -442,7 +437,7 @@ Firebase ponúka mnoho rôznych spôsobov autentifikácie používateľa. My sme
 \subsubsection{\acrshort{tmdb}}
 Na využívanie databázy filmových titulov \acrshort{tmdb} resp. jej \acrshort{api}, bolo potrebné si na web stránke služby založiť účet. Následne nám bol vygenerovaný \acrshort{api} kľúč, ktorý sme vložili do spomínaného súboru keys.js. 
 \subsubsection{GitHub}
-Na zálohovanie zdrojového kódu sme použili \href{https://github.com/}{GitHub}, čo je voľne dostupná webová služba, ktorá poskytuje zálohu kódu, jeho verzionovanie prípadne sledovanie zmien a mnohé iné užitočné funkcie. Je jednou z najpopulárnejších služieb s týmto zameraním. Repozitár s našou aplikáciou je zverejnený na odkaze na \hyperref[ghqrcode]{obrázku nižšie}. 
+Na zálohovanie zdrojového kódu sme použili \href{https://github.com/}{GitHub}, voľne dostupnú webovú službu, ktorá poskytuje zálohu kódu, jeho verzionovanie prípadne sledovanie zmien a mnohé iné užitočné funkcie. Je jednou z najpopulárnejších služieb s týmto zameraním. Repozitár s našou aplikáciou je zverejnený na odkaze na \hyperref[ghqrcode]{obrázku \ref{ghqrcode}}. 
 
 \begin{figure}[hbt!]
   \centering   
@@ -454,7 +449,7 @@ Na zálohovanie zdrojového kódu sme použili \href{https://github.com/}{GitHub
   \label{ghqrcode}
 \end{figure}
 \subsection{Súborová štruktúra aplikácie}
-Súborovú štruktúru sme zvolili po logických celkoch tak, aby v súboroch bol poriadok. V koreňovom adresári aplikácie máme hlavný súbor aplikácie App.js, kde načítavame použité fonty, pozadia a inicializujeme Firebase. Ďalšie dva podpriečinky \textit{src} a \textit{navigation} uchovávajú zvyšný zdrojový kód. 
+V koreňovom adresári aplikácie máme hlavný súbor aplikácie App.js, kde načítavame použité fonty, pozadia a inicializujeme Firebase. Ďalšie dva podpriečinky \textit{src} a \textit{navigation} uchovávajú zvyšný zdrojový kód. 
 
 Priečinok \textit{src} obsahuje nasledujúce podpriečinky:
 \begin{itemize}
@@ -468,23 +463,22 @@ Priečinok \textit{navigation} pozostáva z rôznych druhov navigácií, ktorým
 
 \subsection{Obrazovky v aplikácií}
 \label{sec:screens}
-Keďže sme v aplikácií použili viacero obrazoviek, bolo treba ich vytvoriť a vhodným spôsobom prepojiť, aby sa medzi nimi dalo navzájom pohybovať. Vytvorenie logického a intuitívneho ovládania, je dôležitým prvkom pri implementácií mobilnej aplikácie.
+Keďže sme v aplikácií použili viacero obrazoviek, bolo treba ich vytvoriť a vhodným spôsobom prepojiť tak, aby sa medzi nimi dalo navzájom pohybovať. Vytvorenie logického a intuitívneho ovládania, je dôležitým prvkom pri implementácií mobilnej aplikácie.
 \subsubsection{React Navigation}
-Nato aby sa dalo v React Native pohybovať medzi rôznymi obrazovkami slúži knižnica React Navigation. Pridali sme ju pomocou príkazu \textit{yarn add react-navigation}. Tak isto sme vždy pridali aj konkrétne druhy navigácií ktoré sme neskôr použili. Pred použitím konkrétnej navigácie ju treba vždy vložiť do daného súboru pomocou importu. 
+Nato aby sa dalo v React Native pohybovať medzi rôznymi obrazovkami slúži knižnica React Navigation. Pridali sme ju pomocou príkazu \textit{yarn add react-navigation}. Tak isto sme vždy pridali aj konkrétne druhy navigácií ktoré sme neskôr použili.
 \subsubsection{Stack navigator}
-Základnou navigáciou, ktorá umožňuje presúvanie medzi obrazovkami je stack navigator. Slúži aj ako akýsi kontajner pre ostatné navigácie, ktoré obsahujú svoje vlastné obrazovky. K nim sa dostaneme neskôr.
+Základná navigácia, ktorá umožňuje presúvanie medzi obrazovkami je stack navigator. Po jej vytvorení sme ju použili ako detský komponent v nami vytvorenom komponente MainStackNavigator. 
 
-Vytvorili sme ho v súbore StackNavigator.js pomocou funkcie \textit{createStackNavigator()}. Následne sme vytvorili komponent MainStackNavigator ktorý bude obsahovať všetky ostatné obrazovky, ako aj všetky ostatné navigácie s vlastnými obrazovkami. Obrazovka ktorá bude v komponente ako prvá v poradí, sa aj vyrenderuje ako prvá pri spustení aplikácie. 
+Keďže stack navigator slúži ako kontajner, popridávali sme doňho všetky ostatné typy navigácií s vlastnými obrazovkami a obrazovky, ktoré nie sú v žiadnej konkrétnej navigácií. Obrazovka ktorá bude v stack navigatore ako prvá v poradí, sa aj reálne vyrenderuje ako prvá pri spustení aplikácie. 
 
-Vložili sme teda doň nami vytvorené obrazovky SignIn, SignUp, Home a MovieDetail. Na obrazovky, ktoré sú takto priamo vložené do stack navigatoru, je možné sa odnavigovať vrámci aplikácie z akejkoľvek inej obrazovky a navigácie. Ostatné obrazovky, ktoré majú špecifické použitie, sú použité vrámci ďalších navigácií, pričom tie budú vo vnútri tohto hlavného stack navigatora. 
 \subsubsection{Drawer navigation}
-Drawer navigation je typ navigácie, ktorý pôsobí ako menu, ktoré sa dá otvoriť potiahnutím do strany na obrazovke. V samostatnom súbore DrawerNavigator.js sme ho vytvorili pomocou funkcie \textit{createDrawerNavigator()}. Doň sme vložili obrazovky Home, MyProfile a Requests (obrazovku žiadostí o spojenie).
+Drawer navigation je typ navigácie, ktorý pôsobí ako menu, ktoré sa dá otvoriť potiahnutím do strany na obrazovke. Do tejto navigácie sme vložili obrazovky Home, MyProfile a Requests (obrazovku žiadostí o spojenie). Pomocou tejto navigácie sme umožnili aj odhlásenie používateľa.
 \subsubsection{Tab navigation}
-Tab navigation slúži na prepínanie medzi viacerými obrazovkami vo vytvorenej spodnej lište. Použili sme 3 takéto navigácie s rôznymi obrazovkami: 
+Tab navigation slúži na prepínanie medzi viacerými obrazovkami v spodnej lište. Použili sme 3 takéto navigácie s rôznymi obrazovkami: 
 \begin{itemize}
 {\item Prvá obsahuje obrazovku ExploreMovies na objavovanie filmov a obrazovku FindFriend, ktorá slúži na vyhľadanie partnera na spoločné pozeranie. } 
 {\item Druhá predstavuje používateľovu knižnicu, pričom združuje obrazovky LikedMovies a DislikedMovies.} 
-{\item Posledná je použitá pri zobrazení spojenia dvoch používateľov kedy zobrazuje obrazovku RecommendedMovies s odporučenými filmami danému spojeniu a MatchedMovies ktorý zobrazí zhodu v hodnoteniach oboch použivateľov.} 
+{\item Posledná je použitá pri zobrazení spojenia dvoch používateľov, kedy zobrazuje obrazovku RecommendedMovies s odporučenými filmami pre dané spojenie a MatchedMovies, ktorý zobrazí filmy, ktoré sa páčili obom používateľom.} 
 \end{itemize}
 
 Na \hyperref[tabnav]{obrázku \ref{tabnav}} sú zobrazené všetky 3 tab navigácie po vložení konkrétnych obrazoviek.
@@ -498,37 +492,26 @@ Na \hyperref[tabnav]{obrázku \ref{tabnav}} sú zobrazené všetky 3 tab navigá
   \label{tabnav}
 \end{figure}
 
-\subsubsection{Dokončenie navigácie}
-Na úspešné spustenie navigácie, bolo treba pridať hlavný stack navigator do komponentu NavigationContainer v hlavnom súbore App.js. 
-
-Hlavný súbor aplikácie tým pádom obsahuje iba úvodné inicializácie a navigáciu ako môžeme vidieť v  \hyperref[appjs-navDone]{ukážke \ref{appjs-navDone}}. Všetok ostatný kód je v priečinkoch \textit{src} a \textit{navigation}.
-\begin{lstlisting}[caption={Ukážka z App.js po implementácií navigácie}, label={appjs-navDone}] 
-      <NavigationContainer>
-        <MainStackNavigator />
-        <StatusBar hidden={true} translucent={true} currentHeight={200} />
-      </NavigationContainer>
-\end{lstlisting}
-
 \subsection{Autentifikácia používateľa}
-Ďalšou dôležitou súčasťou aplikácie je nepochybne autentifikácia používateľov. Vybrali sme si systém autentifikácie od Firebase pomocou emailu a hesla, ktorý nás odbremeňuje od zdĺhavej implementácie vlastného riešenia a rieši takmer všetko za nás. 
+Ďalšou dôležitou súčasťou aplikácie je autentifikácia používateľov.
 
-Našou úlohou bolo už len použiť dostupné funkcie od Firebase na registráciu a prihlásenie a doručiť im registračné resp. prihlasovacie údaje zadané používateľom. Následne sme vytvorili komponent v ktorom sme implementovali jednoduchú logiku ohľadom zobrazovania obrazoviek v závislosti od toho, či je používateľ prihlásený alebo nie resp. či sa práve zaregistroval.
+Našou úlohou bolo použiť dostupné funkcie od Firebase na registráciu a prihlásenie a doručiť im registračné resp. prihlasovacie údaje zadané používateľom. Následne sme vytvorili komponent v ktorom sme implementovali jednoduchú logiku zobrazovania obrazoviek, v závislosti od toho, či je používateľ prihlásený alebo sa práve zaregistroval.
 \subsubsection{Registrácia}
 Na registráciu sme vytvorili vlastnú funkciu \textit{registration}, ktorá vykoná všetko potrebné. Najprv sa zavolá asynchrónna funkcia \textit{firebase.auth().createUserWithEmailAndPassword(email, password)}, ktorá vytvorí účet s danými údajmi ak ešte neexistuje. Následne si používateľa vytvoríme aj v databáze Firestore. 
 \subsubsection{Prihlásenie a odhlásenie}
-Prihlasovanie rieši naša vlastná funkcia \textit{signIn}, v ktorej sa len volá asynchrónna funkcia \textit{firebase.auth().signInWithEmailAndPassword(email,password)} od firebase. 
+Prihlasovanie rieši naša vlastná funkcia \textit{signIn}, v ktorej sa volá asynchrónna funkcia \textit{firebase.auth().signInWithEmailAndPassword(email,password)} od firebase. 
 
 Odhlásenie bolo implementované jednoducho pomocou funkcie \textit{firebase.auth().signOut()}.
 \subsubsection{Dokončenie logiky}
 Nato aby aplikácia vedela akú obrazovku má po otvorení zobraziť sme vytvorili komponent Loading, ktorý sme vložili do stack navigatoru ako prvú obrazovku v poradí. Tento komponent zobrazuje načítavanie pri spustení aplikácie a zároveň vo vnútri obsahuje jednoduchú rozhodovaciu logiku, či zobraziť domácu obrazovku pre prihláseného používateľa, alebo prihlasovaciu obrazovku. 
 
-To sme docielili pomocou nastavenia pozorovateľa na authentication stav vďaka asynchrónnej funkcii \textit{firebase.auth().onAuthStateChanged()}, ktorá sa spustí pri zmene daného stavu. Jednoducho povedané, spustí sa vždy, keď sa používateľ odhlási, prihlási alebo zaregistruje, pričom vráti buď objekt používateľa alebo null. Ak vráti používateľa, tak vieme, že treba zobraziť domácu obrazovku, ak null tak prihlasovaciu.
+To sme docielili pomocou nastavenia pozorovateľa na authentication stav vďaka asynchrónnej funkcii \textit{firebase.auth().onAuthStateChanged()}, ktorá sa spustí pri zmene daného stavu. Jednoducho povedané, spustí sa vždy, keď sa používateľ odhlási, prihlási alebo zaregistruje, pričom vráti buď objekt používateľa alebo null. V prípade vrátenia null, aplikácia zobrazí prihlasovaciu obrazovku. Ak funkcia vráti používateľa, skontrolujeme či sa práve zaregistroval, aby sme vedeli či je potrebné mu zobraziť návod na použitie aplikácie a úvodný dotazník. Pokiaľ to nie je nový používateľ, aplikácia mu rovno zobrazí domácu obrazovku. 
 \subsection{Štruktúra databázy}
 Na ukladanie údajov sme použili NoSQL cloud databázu Firestore. Tá obsahuje dve základné kolekcie \textit{Users} a  \textit{Sessions}. 
 
 Kolekcia \textit{Users} združuje všetkých používateľov vo forme jednotlivých dokumentov, ktorých názov je unikátne id daného používateľa. Obsah jednotlivých dokumentov tvoria základné informácie o používateľovi. Dôležité pre proces párovania budú hlavne položky \textit{isPaired} a \textit{sentRequest}. Prvá z nich môže mať buď hodnotu null alebo id spojenia v ktorom používateľ figuruje. Druhá môže mať taktiež null alebo id používateľa ktorému bola odoslaná žiadosť o spojenie. Dokument obsahuje aj ďalšie subkolekcie dokumentov a to kolekcie pozitívne a negatívne ohodnotených filmov, kolekciu čakajúcich žiadosti o spojenie a kolekciu preferencií používateľa.
 
-Kolekcia \textit{Sessions} obsahuje jednotlivé spojenia taktiež vo forme dokumentov. Názov dokumentu je unikátne id daného spojenia. Dokument zahŕňa id oboch používateľov, id filmov ktoré používatelia označili, že sa im páčia a preferencie daného spojenia vygenerované na základe preferencií oboch používateľov. Spojenie ďalej zahŕňa subkolekciu odporúčaných filmov daného spojenia. 
+Kolekcia \textit{Sessions} obsahuje jednotlivé spojenia taktiež vo forme dokumentov. Dokument zahŕňa id oboch používateľov, id filmov ktoré používatelia označili, že sa im páčia a preferencie daného spojenia vygenerované na základe preferencií oboch používateľov. Spojenie ďalej zahŕňa subkolekciu odporúčaných filmov daného spojenia. 
 \vspace{55mm}
 
 \begin{figure}[hbt!]
@@ -549,10 +532,10 @@ Mechanizmus párovania je potom nasledovný:
 \begin{enumerate}
     \item {Používateľ zadá na obrazovke FindFriend nickname používateľa, ktorému chce zaslať žiadosť.}
     \item {Následné po zadaní sa spustí nami vytvorená funkcia \textit{checkAvailability(nickname)}, ktorá vo výsledku overí či je používateľ k dispozícií.}
-    \item {Po overení sa otvorí modal (??vyskakovacie okno), v ktorom bude buď správa o dostupnosti a vyzvanie na odoslanie žiadosti, alebo informácia o tom, že používateľ momentálne nie je dostupný na párovanie.}
+    \item {Po overení sa otvorí modálne okno, v ktorom bude buď správa o dostupnosti a vyzvanie na odoslanie žiadosti, alebo informácia o tom, že používateľ momentálne nie je dostupný na párovanie.}
     \item {Po úspešnom odoslaní sa v databáze v dokumente odosielateľa nastaví hodnota \textit{sentRequest} na id prijímateľa a tým sa mu znemožní odosielanie ďalších žiadostí. U prijímateľa žiadosti sa v databáze v kolekcií pendingRequests vytvorí nová žiadosť.}
     \item {Prijímateľ si na obrazovke Requests vie zobraziť všetky žiadosti a buď ich odmietnuť alebo prijať. Prijať však vie iba jednu.}
-    \item {Po prijatí žiadosti sa spustí nami vytvorená funkcia \textit{acceptUserHandler()}, ktorá obslúži celý proces prijatia žiadosti. To zahŕňa vymazanie žiadosti z kolekcie pendingRequests, nastavenie sentRequest na null a zavolanie funkcie \textit{createNewSession()}, ktorá vytvorí nové spojenie v databáze. Ako posledné potom spustí najprv funkciu na vygenerovanie preferencií pre dané spojenie, následne funkciu na vygenerovanie konkrétnych odporúčaných filmov z daných preferencií. Celému procesu odporúčania sa budeme viac venovať v ďalšej podkapitole.}
+    \item {Po prijatí žiadosti sa spustí nami vytvorená funkcia \textit{acceptUserHandler()}, ktorá obslúži celý proces prijatia žiadosti. To zahŕňa vymazanie žiadosti z kolekcie pendingRequests, nastavenie sentRequest na null a zavolanie funkcie \textit{createNewSession()}, ktorá vytvorí nové spojenie v databáze. Ako posledné potom spustí najprv funkciu na vygenerovanie preferencií pre dané spojenie, následne funkciu na vygenerovanie konkrétnych odporúčaných filmov z daných preferencií.}
 \end{enumerate}
 
 \subsection{Odporúčací algoritmus}
@@ -584,11 +567,11 @@ await axios(url).then((data) => {
 });
 
 \end{lstlisting}
-\section{Potenciálne zlepšenia do budúcna}
+\subsection{Potenciálne zlepšenia do budúcna}
 Počas implementácie aplikácie sme si zapisovali vylepšenia, ktoré by mohli byť v budúcnosti implementované a výrazným spôsobom by zlepšili \acrshort{ux} a celkovú efektivitu aplikácie. Spomenieme tie najdôležitejšie z nich.
 \begin{itemize}
 {\item Implementovanie prihlásenia pomocou Gmailu a Facebooku.}
-{\item Nahradenie \acrshort{tmdb} inou databázou. Najlepšie riešenie by bolo \acrshort{imdb}, čo aj bol náš pôvodný zámer, avšak nenašli sme \acrshort{api}, ktoré by zodpovedalo našim požiadavkám a zároveň by pracovalo s \acrshort{imdb}. Táto zmena by priniesla väčšiu ponuku filmov ako aj relevantnejšie hodnotenia a informácie.}
+{\item Nahradenie \acrshort{tmdb} inou databázou. Najlepšie riešenie by bolo \acrshort{imdb}, čo bol náš pôvodný zámer, avšak nenašli sme \acrshort{api}, ktoré by zodpovedalo našim požiadavkám a zároveň by pracovalo s \acrshort{imdb}. Táto zmena by priniesla väčšiu ponuku filmov ako aj relevantnejšie hodnotenia a informácie.}
 {\item Zapojenie negatívnych interakcií do tvorby profilu preferencií ako aj do generovania odporúčaných filmov.}
 {\item Pri tvorbe profilu preferencií zapojiť viaceré atribúty filmov ako napríklad hercov, režisérov, dĺžku filmu či hodnotenie filmu.}
 \end{itemize}
